@@ -1,0 +1,1537 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth" x-data="{ darkMode: localStorage.getItem('darkMode') === 'true' }"
+    x-init="$watch('darkMode', val => localStorage.setItem('darkMode', val)); document.documentElement.classList.toggle('dark', darkMode)"
+    :class="{ 'dark': darkMode }">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Nqobile Sibiya - IT Portfolio</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.7.1/ScrollTrigger.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+    <link rel="stylesheet" href="modern-style.css">
+    <style>
+        [x-cloak] {
+            display: none !important;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(90deg, #4a90e2, #63b3ed);
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .photo-item {
+            aspect-ratio: 1 / 1;
+            overflow: hidden;
+            transition: transform 0.3s ease-in-out;
+            border-radius: 0.5rem;
+            position: relative;
+        }
+
+        .photo-item img {
+            transition: transform 0.3s ease-in-out;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .photo-item .overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7), transparent);
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            align-items: center;
+            padding-bottom: 1rem;
+        }
+
+        .photo-item:hover .overlay {
+            opacity: 1;
+        }
+
+        .photo-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .btn {
+            transition: transform 0.2s ease-out, filter 0.2s ease-out;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            filter: brightness(1.1);
+        }
+
+        #back-to-top {
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        #back-to-top:hover {
+            opacity: 1;
+        }
+
+        .fade-in-section {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+        }
+
+        .fade-in-section.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .content-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            margin-bottom: 1.5rem;
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            background: rgba(255, 255, 255, 0.95);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .content-card:hover {
+            transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+            box-shadow: 20px 20px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .education-card-header,
+        .experience-card-header {
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 0.75rem;
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        #about {
+            background: linear-gradient(135deg, #ffffff, #f9fafb);
+        }
+
+        #education {
+            background: linear-gradient(135deg, #f9fafb, #f3f4f6);
+        }
+
+        #experience {
+            background: linear-gradient(135deg, #f3f4f6, #e5e7eb);
+        }
+
+        #skills {
+            background: linear-gradient(135deg, #e5e7eb, #d1d5db);
+        }
+
+        #contact {
+            background: linear-gradient(135deg, #d1d5db, #9ca3af);
+        }
+
+        .dark .content-card {
+            background-color: #1f2937;
+            color: #e5e7eb;
+            border-color: #374151;
+        }
+
+        .dark .skill-card {
+            background-color: #1f2937;
+            color: #e5e7eb;
+        }
+
+        .dark #about,
+        .dark #education,
+        .dark #skills,
+        .dark #projects,
+        .dark #contact,
+        .dark #resume {
+            background-color: #111827;
+            color: #e5e7eb;
+        }
+
+        .dark .text-gray-700,
+        .dark .text-gray-600 {
+            color: #9ca3af;
+        }
+
+        .dark .gradient-bg {
+            background: linear-gradient(90deg, #1e3a8a, #3b82f6);
+        }
+
+        /* 3D Card Effects */
+        .content-card {
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease, box-shadow 0.5s ease;
+            perspective: 1000px;
+            background: rgba(255, 255, 255, 0.95);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .content-card:hover {
+            transform: translateY(-10px) rotateX(5deg) rotateY(5deg);
+            box-shadow: 20px 20px 60px rgba(0, 0, 0, 0.2);
+        }
+
+        .skill-card {
+            transform-style: preserve-3d;
+            transition: transform 0.6s ease;
+            perspective: 1000px;
+            background: rgba(255, 255, 255, 0.95);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+            border-radius: 1rem;
+            overflow: hidden;
+            height: 200px;
+        }
+
+        .skill-card-inner {
+            position: relative;
+            width: 100%;
+            height: 100%;
+            text-align: center;
+            transition: transform 0.6s;
+            transform-style: preserve-3d;
+        }
+
+        .skill-card:hover .skill-card-inner {
+            transform: rotateY(180deg);
+        }
+
+        .skill-card-front,
+        .skill-card-back {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            backface-visibility: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+        }
+
+        .skill-card-back {
+            transform: rotateY(180deg);
+            background: linear-gradient(135deg, #4a90e2, #63b3ed);
+            color: white;
+        }
+
+        .skill-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: #4a90e2;
+        }
+
+        /* Floating Animation */
+        @keyframes float {
+            0% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0px);
+            }
+        }
+
+        .floating {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        /* Parallax Effect */
+        .parallax {
+            transform: translateZ(-10px) scale(2);
+            z-index: -1;
+        }
+
+        /* 3D Text Effect */
+        .text-3d {
+            text-shadow: 0 1px 0 #ccc,
+                0 2px 0 #c9c9c9,
+                0 3px 0 #bbb,
+                0 4px 0 #b9b9b9,
+                0 5px 0 #aaa,
+                0 6px 1px rgba(0, 0, 0, .1),
+                0 0 5px rgba(0, 0, 0, .1),
+                0 1px 3px rgba(0, 0, 0, .3),
+                0 3px 5px rgba(0, 0, 0, .2),
+                0 5px 10px rgba(0, 0, 0, .25),
+                0 10px 10px rgba(0, 0, 0, .2),
+                0 20px 20px rgba(0, 0, 0, .15);
+        }
+
+        /* Smooth Scroll */
+        html {
+            scroll-behavior: smooth;
+            perspective: 1px;
+            transform-style: preserve-3d;
+            height: 100%;
+            overflow-y: scroll;
+            overflow-x: hidden;
+        }
+
+        /* Dark mode enhancements */
+        .dark .content-card {
+            background: rgba(31, 41, 55, 0.95);
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .dark .skill-card-back {
+            background: linear-gradient(135deg, #1e3a8a, #3b82f6);
+        }
+
+        /* Loading animation */
+        .loading-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: white;
+            z-index: 9999;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: opacity 0.5s ease-out;
+        }
+
+        .dark .loading-animation {
+            background: #111827;
+        }
+
+        /* Mouse trail effect */
+        .cursor-trail {
+            position: fixed;
+            width: 10px;
+            height: 10px;
+            background: rgba(74, 144, 226, 0.6);
+            border-radius: 50%;
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Scroll progress indicator */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(to right, #4a90e2, #63b3ed);
+            transform-origin: 0;
+            z-index: 1000;
+        }
+
+        /* Timeline styles */
+        .timeline-container {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .timeline {
+            position: relative;
+            padding: 1rem 0;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin: 1.5rem 0;
+            padding-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0.5rem;
+            width: 8px;
+            height: 100%;
+            background: linear-gradient(to bottom, #4a90e2, #63b3ed);
+            border-radius: 4px;
+        }
+
+        .timeline-content {
+            padding: 1rem;
+            background: white;
+            border-radius: 0.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-content:hover {
+            transform: translateY(-5px);
+        }
+
+        .timeline-date {
+            font-weight: bold;
+            color: #4a90e2;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-size: 1.125rem;
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-description {
+            color: #666;
+        }
+    </style>
+</head>
+
+<body class="font-sans leading-normal tracking-normal text-gray-900 bg-white dark:bg-gray-900 dark:text-gray-100">
+    <nav class="sticky top-0 z-50 transition-all duration-300" x-data="{ isOpen: false, isScrolled: false }"
+        @scroll.window="isScrolled = (window.pageYOffset > 50)"
+        :class="{ 'bg-white dark:bg-gray-800 shadow-lg': isScrolled, 'bg-white dark:bg-gray-800 bg-opacity-90 dark:bg-opacity-90 backdrop-blur-sm': !isScrolled }">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between">
+                <div class="flex space-x-7">
+                    <a href="#" class="flex items-center py-4 px-2">
+                        <span class="font-semibold text-gray-500 dark:text-gray-300 text-lg">Nqobile Sibiya</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-1">
+                    <a href="#home"
+                        class="py-4 px-2 text-gray-500 dark:text-gray-300 font-semibold hover:text-blue-500 dark:hover:text-blue-400 transition duration-300">Home</a>
+                    <a href="#about"
+                        class="py-4 px-2 text-gray-500 dark:text-gray-300 font-semibold hover:text-blue-500 dark:hover:text-blue-400 transition duration-300">About</a>
+                    <a href="#education"
+                        class="py-4 px-2 text-gray-500 dark:text-gray-300 font-semibold hover:text-blue-500 dark:hover:text-blue-400 transition duration-300">Education</a>
+                    <a href="#experience"
+                        class="py-4 px-2 text-gray-500 dark:text-gray-300 font-semibold hover:text-blue-500 dark:hover:text-blue-400 transition duration-300">Experience</a>
+                    <a href="#skills"
+                        class="py-4 px-2 text-gray-500 dark:text-gray-300 font-semibold hover:text-blue-500 dark:hover:text-blue-400 transition duration-300">Skills</a>
+                    <a href="#certifications"
+                        class="py-4 px-2 text-gray-500 dark:text-gray-300 font-semibold hover:text-blue-500 dark:hover:text-blue-400 transition duration-300">My
+                        Certifications</a>
+                    <a href="#projects"
+                        class="py-4 px-2 text-gray-500 dark:text-gray-300 font-semibold hover:text-blue-500 dark:hover:text-blue-400 transition duration-300">My
+                        Projects</a>
+                    <a href="https://github.com/nqobile-x" target="_blank" rel="noopener noreferrer"
+                        class="py-4 px-2 text-gray-500 dark:text-gray-300 font-semibold hover:text-blue-500 dark:hover:text-blue-400 transition duration-300"
+                        title="View my GitHub Projects">
+                        <i class="fab fa-github mr-1"></i>GitHub
+                    </a>
+                    <a href="#resume"
+                        class="py-4 px-2 text-gray-500 dark:text-gray-300 font-semibold hover:text-blue-500 dark:hover:text-blue-400 transition duration-300">Resume</a>
+                    <a href="#contact"
+                        class="py-4 px-2 text-gray-500 dark:text-gray-300 font-semibold hover:text-blue-500 dark:hover:text-blue-400 transition duration-300">Contact</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button @click="isOpen = !isOpen" class="outline-none mobile-menu-button"
+                        aria-label="Toggle mobile menu" title="Toggle mobile menu">
+                        <svg class="w-6 h-6 text-gray-500 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
+                            x-show="!isOpen" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                            <path d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+                <button @click="darkMode = !darkMode"
+                    class="ml-4 p-2 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 dark:focus:ring-offset-gray-800 dark:focus:ring-yellow-400"
+                    aria-label="Toggle dark mode">
+                    <span x-show="!darkMode"><i
+                            class="fas fa-moon text-gray-600 dark:text-gray-400 hover:text-blue-500 dark:hover:text-yellow-400 text-xl"></i></span>
+                    <span x-show="darkMode" x-cloak><i
+                            class="fas fa-sun text-yellow-500 hover:text-yellow-300 text-xl"></i></span>
+                </button>
+            </div>
+        </div>
+        <div class="md:hidden bg-white dark:bg-gray-800" x-show="isOpen"
+            x-transition:enter="transition ease-out duration-100 transform"
+            x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
+            x-transition:leave="transition ease-in duration-75 transform"
+            x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95">
+            <ul class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <li><a href="#home"
+                        class="block py-2 px-4 text-gray-500 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">Home</a>
+                </li>
+                <li><a href="#about"
+                        class="block py-2 px-4 text-gray-500 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">About</a>
+                </li>
+                <li><a href="#education"
+                        class="block py-2 px-4 text-gray-500 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">Education</a>
+                </li>
+                <li><a href="#experience"
+                        class="block py-2 px-4 text-gray-500 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">Experience</a>
+                </li>
+                <li><a href="#skills"
+                        class="block py-2 px-4 text-gray-500 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">Skills</a>
+                </li>
+                <li><a href="#certifications"
+                        class="block py-2 px-4 text-gray-500 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">My
+                        Certifications</a></li>
+                <li><a href="#projects"
+                        class="block py-2 px-4 text-gray-500 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">My
+                        Projects</a></li>
+                <li><a href="https://github.com/nqobile-x" target="_blank" rel="noopener noreferrer"
+                        class="block py-2 px-4 text-gray-500 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400"
+                        title="View my GitHub Projects">
+                        <i class="fab fa-github mr-1"></i>GitHub
+                    </a></li>
+                <li><a href="#resume"
+                        class="block py-2 px-4 text-gray-500 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">Resume</a>
+                </li>
+                <li><a href="#contact"
+                        class="block py-2 px-4 text-gray-500 dark:text-gray-300 hover:text-blue-500 dark:hover:text-blue-400">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section id="home"
+            class="gradient-bg text-white h-screen flex items-center justify-center text-center relative overflow-hidden">
+            <div
+                class="absolute top-0 left-0 w-full h-full bg-gradient-to-br from-blue-500 to-purple-600 opacity-70 z-0">
+            </div>
+            <div class="z-10 relative px-4">
+                <h1 class="text-5xl md:text-7xl font-bold mb-4 animate-fade-in-down">Nqobile Sibiya</h1>
+                <p class="text-xl md:text-2xl mb-8 animate-fade-in-up">IIE Varsity College Bsc Grad | Cloud Support
+                    Associate intern @Amazon | Google ImageFX Volunteer | Tech Tutor @ We R Tutors</p>
+                <a href="#about"
+                    class="btn bg-white text-blue-600 px-8 py-3 rounded-full font-semibold shadow-lg hover:bg-gray-100 transition duration-300">Learn
+                    More</a>
+            </div>
+        </section>
+
+        <section id="about" class="py-20 fade-in-section bg-white dark:bg-gray-900">
+            <div class="container mx-auto px-4 flex flex-col md:flex-row items-center">
+                <div class="md:w-1/3 mb-10 md:mb-0 md:mr-10 text-center">
+                    <img src="./Nqo.jpeg" alt="Nqobile Sibiya"
+                        class="rounded-full mx-auto w-64 h-64 object-cover shadow-lg border-4 border-white dark:border-gray-700">
+                </div>
+                <div class="md:w-2/3 text-center md:text-left">
+                    <h2 class="text-4xl font-bold mb-6 dark:text-white">About Me</h2>
+                    <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                        Cloud Full-Stack Software Engineer (South Africa) with hands-on AWS and enterprise cloud skills,
+                        passionate about scalable, secure solutions and mentoring developers.
+
+                        Certified AWS Solutions Architect & AI Practitioner
+                        Experienced IT Tutor with 3+ years teaching programming, databases, and software engineering
+                        Skilled in cloud architecture, DevOps, system design, and customer-focused problem solving
+                    <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-4"> What I Do
+                        Build and troubleshoot cloud-native applications (AWS EC2, S3, VPC, RDS, Lambda)
+                        Design scalable, secure architectures and optimize cloud infrastructure
+                        Develop full-stack solutions with React, .NET Core, SQL Server, and RESTful APIs
+                        Automate workflows with Docker, CI/CD pipelines (GitHub Actions, Azure DevOps)
+                        Lead technical instruction and mentoring for diverse learners
+                        Collaborate on cross-functional teams and document technical resolutions
+                    </p>
+                    </p>
+                    <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed mb-4">
+                        Currently honing my skills as a Cloud Support Intern at AWS, my goal is to become a skilled
+                        Cloud Engineer and Full-Stack Developer. I am constantly seeking opportunities to expand my
+                        knowledge in cloud computing (AWS, Azure), web development frameworks, and database management.
+                    </p>
+                    <p class="text-lg text-gray-700 dark:text-gray-300 leading-relaxed">
+                        Alongside my technical pursuits, I am also a Graphic Designer and enjoy exploring creative
+                        technologies, including participating as a GoogleFX Imagen Tester.
+                    </p>
+                </div>
+            </div>
+        </section>
+        <section id="timeline" class="py-20 fade-in-section bg-gray-50 dark:bg-gray-800">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold text-center mb-12 dark:text-white">My Journey</h2>
+                <div class="timeline-container">
+                    <div class="timeline">
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <div class="timeline-date">February 2025</div>
+                                <div class="timeline-title">AWS Cloud Support Associate</div>
+                                <div class="timeline-description">Started my journey at AWS, providing technical support
+                                    and solutions for cloud services.</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <div class="timeline-date">April 2025</div>
+                                <div class="timeline-title">AWS Ben Books Initiative</div>
+                                <div class="timeline-description">Volunteering with AWS Ben Books to distribute books
+                                    and promote literacy in communities.</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <div class="timeline-date">November 2024</div>
+                                <div class="timeline-title">Bachelor's Degree Completion</div>
+                                <div class="timeline-description">Graduated with distinction in Computer Science
+                                    (Application Development) from IIE Varsity College.</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <div class="timeline-date">June 2024</div>
+                                <div class="timeline-title">Google Imagen FX Tester</div>
+                                <div class="timeline-description">Started volunteering to test and provide feedback on
+                                    Google's Imagen text-to-image AI models.</div>
+                            </div>
+                        </div>
+                        <div class="timeline-item">
+                            <div class="timeline-content">
+                                <div class="timeline-date">2021</div>
+                                <div class="timeline-title">Systems Development Course</div>
+                                <div class="timeline-description">Completed Systems Development training at CTU Training
+                                    Solutions, focusing on programming and system design.</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="education" class="py-20 bg-gray-50 dark:bg-gray-800 fade-in-section">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold text-center mb-12 dark:text-white">Education</h2>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    <div class="content-card p-6 rounded-lg shadow-lg bg-white dark:bg-gray-700 overflow-hidden">
+                        <div class="education-card-header">
+                            <i class="fas fa-university text-3xl text-blue-500"></i>
+                            <div>
+                                <h3 class="text-xl font-bold text-blue-600">Bachelor's in Computer Science in
+                                    Application Development <span class="text-sm font-normal text-green-600">(Graduated
+                                        with Distinction)</span></h3>
+                                <p class="text-gray-600 dark:text-gray-300">IIe Varsity College, Sandton</p>
+                                <p class="text-gray-600 dark:text-gray-300">February 2022 – November 2024</p>
+                            </div>
+                        </div>
+                        <p class="font-medium text-gray-800 dark:text-gray-300 mb-2 mt-4">Key Modules:</p>
+                        <ul class="list-disc list-inside text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>Java Programming 1A, 1B, 2A, 2B, 3A, 3B</li>
+                            <li>Network Engineering 1A, 1B</li>
+                            <li>System Analysis and Design</li>
+                            <li>C# Programming</li>
+                            <li>Cloud Development</li>
+                            <li>Databases and Advanced Databases</li>
+                            <li>IT Project Management</li>
+                        </ul>
+                    </div>
+                    <div class="content-card p-6 rounded-lg shadow-lg bg-white dark:bg-gray-700 overflow-hidden">
+                        <div class="education-card-header">
+                            <i class="fas fa-cogs text-3xl text-green-500"></i>
+                            <div>
+                                <h3 class="text-xl font-bold text-green-600">Systems Development Course</h3>
+                                <p class="text-gray-600 dark:text-gray-300">CTU Training Solutions, Auckland Park</p>
+                                <p class="text-gray-600 dark:text-gray-300">2021</p>
+                            </div>
+                        </div>
+                        <p class="font-medium text-gray-800 dark:text-gray-300 mb-2 mt-4">Key Modules:</p>
+                        <ul class="list-disc list-inside text-gray-700 dark:text-gray-300 space-y-1">
+                            <li>Robotic Development</li>
+                            <li>Python Programming</li>
+                            <li>Computer Architecture</li>
+                            <li>Cloud Fundamentals</li>
+                            <li>Network Architecture</li>
+                            <li>Programmer Ethics</li>
+                            <li>Principles of Program Design</li>
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="experience" class="py-20 fade-in-section">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold text-center mb-12 dark:text-white">Work Experience</h2>
+                <div class="flex flex-wrap -mx-4 justify-center">
+                    <div class="w-full md:w-1/2 lg:w-1/3 px-4 mb-8">
+                        <div class="content-card experience-card h-full">
+                            <div>
+                                <div class="experience-card-header">
+                                    <i class="fab fa-aws text-3xl text-yellow-500"></i>
+                                    <div>
+                                        <h3 class="text-xl font-bold text-yellow-600">Cloud Support Associate</h3>
+                                        <p class="text-gray-600 dark:text-gray-300">Amazon Web Services (AWS)</p>
+                                        <p class="text-gray-600 dark:text-gray-300">February 3, 2025 - Present</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-700 dark:text-gray-300 mt-4">Providing technical support and
+                                    solutions for AWS cloud services, assisting customers with troubleshooting,
+                                    configuration, and best practices.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 lg:w-1/3 px-4 mb-8">
+                        <div class="content-card experience-card h-full">
+                            <div>
+                                <div class="experience-card-header">
+                                    <i class="fab fa-google text-3xl text-red-500"></i>
+                                    <div>
+                                        <h3 class="text-xl font-bold text-red-600">Imagen FX Tester</h3>
+                                        <p class="text-gray-600 dark:text-gray-300">Google (Volunteer)</p>
+                                        <p class="text-gray-600 dark:text-gray-300">June 2024 - Present</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-700 dark:text-gray-300 mt-4">Volunteering to test and provide
+                                    feedback on Google's Imagen text-to-image AI models.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 lg:w-1/3 px-4 mb-8">
+                        <div class="content-card experience-card h-full">
+                            <div>
+                                <div class="experience-card-header">
+                                    <i class="fas fa-briefcase text-3xl text-indigo-500"></i>
+                                    <div>
+                                        <h3 class="text-xl font-bold text-indigo-600">Tutor</h3>
+                                        <p class="text-gray-600 dark:text-gray-300">WeRTutors</p>
+                                        <p class="text-gray-600 dark:text-gray-300">March 2022 - Present</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-700 dark:text-gray-300 mt-4">Part-time tutor in information
+                                    technology, helping students understand the field of IT along with practical
+                                    programming knowledge like Java and SQL database management.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 lg:w-1/3 px-4 mb-8">
+                        <div class="content-card experience-card h-full">
+                            <div>
+                                <div class="experience-card-header">
+                                    <i class="fas fa-book text-3xl text-purple-500"></i>
+                                    <div>
+                                        <h3 class="text-xl font-bold text-purple-600">Book Distribution Volunteer</h3>
+                                        <p class="text-gray-600 dark:text-gray-300">AWS Ben Books Initiative</p>
+                                        <p class="text-gray-600 dark:text-gray-300">April 2025 - Present</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-700 dark:text-gray-300 mt-4">Volunteering with AWS Ben Books
+                                    initiative to help distribute books and promote literacy in communities.</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 lg:w-1/3 px-4 mb-8">
+                        <div class="content-card experience-card h-full">
+                            <div>
+                                <div class="experience-card-header">
+                                    <i class="fas fa-cash-register text-3xl text-orange-500"></i>
+                                    <div>
+                                        <h3 class="text-xl font-bold text-orange-600">Cashier</h3>
+                                        <p class="text-gray-600 dark:text-gray-300">Green Way Fruit and Veg, Mpumalanga
+                                        </p>
+                                        <p class="text-gray-600 dark:text-gray-300">March 2014 - January 2022</p>
+                                    </div>
+                                </div>
+                                <p class="text-gray-700 dark:text-gray-300 mt-4">Worked as a cashier, receiving money
+                                    and calculating change for customers along with counting supplies for the company.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="py-20 fade-in-section">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold text-center mb-12 dark:text-white">Skills</h2>
+                <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div
+                        class="skill-card hover:scale-105 hover:shadow-lg transition-transform duration-200 animate-fadeIn">
+                        <div class="skill-card-inner">
+                            <div class="skill-card-front p-4">
+                                <div>
+                                    <i class="fas fa-code skill-icon"></i>
+                                    <h3 class="text-xl font-bold">Programming Languages</h3>
+                                </div>
+                            </div>
+                            <div class="skill-card-back p-4">
+                                <ul class="text-sm">
+                                    <li>Java</li>
+                                    <li>C#</li>
+                                    <li>Python</li>
+                                    <li>JavaScript</li>
+                                    <li>SQL</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="skill-card hover:scale-105 hover:shadow-lg transition-transform duration-200 animate-fadeIn">
+                        <div class="skill-card-inner">
+                            <div class="skill-card-front p-4">
+                                <div>
+                                    <i class="fas fa-cloud skill-icon"></i>
+                                    <h3 class="text-xl font-bold">Cloud & AWS</h3>
+                                </div>
+                            </div>
+                            <div class="skill-card-back p-4">
+                                <ul class="text-sm">
+                                    <li>AWS EC2, S3, VPC</li>
+                                    <li>AWS IAM, RDS, Lambda</li>
+                                    <li>AWS CloudWatch</li>
+                                    <li>Serverless Architecture</li>
+                                    <li>Microservices</li>
+                                    <li>Microsoft Azure</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="skill-card hover:scale-105 hover:shadow-lg transition-transform duration-200 animate-fadeIn">
+                        <div class="skill-card-inner">
+                            <div class="skill-card-front p-4">
+                                <div>
+                                    <i class="fas fa-laptop-code skill-icon"></i>
+                                    <h3 class="text-xl font-bold">Web Development</h3>
+                                </div>
+                            </div>
+                            <div class="skill-card-back p-4">
+                                <ul class="text-sm">
+                                    <li>HTML</li>
+                                    <li>CSS</li>
+                                    <li>JavaScript</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="skill-card hover:scale-105 hover:shadow-lg transition-transform duration-200 animate-fadeIn">
+                        <div class="skill-card-inner">
+                            <div class="skill-card-front p-4">
+                                <div>
+                                    <i class="fas fa-database skill-icon"></i>
+                                    <h3 class="text-xl font-bold">Database Management</h3>
+                                </div>
+                            </div>
+                            <div class="skill-card-back p-4">
+                                <ul class="text-sm">
+                                    <li>MySQL</li>
+                                    <li>MongoDB</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="skill-card hover:scale-105 hover:shadow-lg transition-transform duration-200 animate-fadeIn">
+                        <div class="skill-card-inner">
+                            <div class="skill-card-front p-4">
+                                <div>
+                                    <i class="fas fa-tools skill-icon"></i>
+                                    <h3 class="text-xl font-bold">Development Tools</h3>
+                                </div>
+                            </div>
+                            <div class="skill-card-back p-4">
+                                <ul class="text-sm">
+                                    <li>Git & GitHub</li>
+                                    <li>Visual Studio 2022</li>
+                                    <li>Android Studio</li>
+                                    <li>Basic CI/CD Pipelines</li>
+                                    <li>MS Office Suite</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div
+                        class="skill-card hover:scale-105 hover:shadow-lg transition-transform duration-200 animate-fadeIn">
+                        <div class="skill-card-inner">
+                            <div class="skill-card-front p-4">
+                                <div>
+                                    <i class="fas fa-desktop skill-icon"></i>
+                                    <h3 class="text-xl font-bold">Operating Systems</h3>
+                                </div>
+                            </div>
+                            <div class="skill-card-back p-4">
+                                <ul class="text-sm">
+                                    <li>Windows</li>
+                                    <li>Linux</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="certifications" class="py-20 fade-in-section">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-8 dark:text-white">Certifications</h2>
+                <p class="text-center text-lg text-gray-600 dark:text-gray-300 mb-12">View my verified certifications
+                    below and on Credly.</p>
+                <div class="text-center mb-12">
+                    <a href="https://www.credly.com/users/nqobile-sibiya" target="_blank" rel="noopener noreferrer"
+                        class="inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300 shadow-md hover:shadow-lg">
+                        <i class="fas fa-external-link-alt mr-2"></i> Visit Full Credly Profile
+                    </a>
+                </div>
+                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+                    <div
+                        class="content-card certification-card text-center hover:shadow-xl transition-shadow duration-300 flex flex-col justify-between">
+                        <div>
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/0/08/Canva_icon_2021.svg"
+                                alt="Canva Logo" class="mx-auto mb-4 h-20 object-contain p-2">
+                            <h3 class="text-lg font-semibold mb-1 text-purple-600">Canva Essentials</h3>
+                            <p class="text-sm text-gray-500 dark:text-gray-300 mb-3">Canva Design School</p>
+                        </div>
+                        <a href="https://www.canva.com/design-school/certification-award/22572924-8769-46a8-b7a5-bd6799f05419"
+                            target="_blank" rel="noopener noreferrer"
+                            class="mt-auto inline-block bg-purple-500 hover:bg-purple-600 text-white font-bold py-1 px-3 rounded text-xs">
+                            View Certificate
+                        </a>
+                    </div>
+                    <div
+                        class="content-card certification-card text-center hover:shadow-xl transition-shadow duration-300 flex flex-col justify-between">
+                        <div>
+                            <img loading="lazy"
+                                src="./Nqobile Sibiya - Computer Information Science Student_files/MTA-Introduction_to_Programming_Using_JavaScript-600x600.png"
+                                alt="MTA JavaScript Certification" class="w-24 h-24 mx-auto mb-4 object-contain">
+                            <h3 class="text-lg font-semibold mb-1 text-blue-600">MTA: Intro to Programming Using
+                                JavaScript</h3>
+                            <p class="text-sm text-gray-500 dark:text-gray-300 mb-3">Microsoft</p>
+                        </div>
+                        <a href="https://www.credly.com/badges/YOUR_BADGE_ID_HERE" target="_blank"
+                            rel="noopener noreferrer"
+                            class="mt-auto inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-3 rounded text-xs">
+                            View on Credly
+                        </a>
+                    </div>
+                    <div
+                        class="content-card certification-card text-center hover:shadow-xl transition-shadow duration-300 flex flex-col justify-between">
+                        <div>
+                            <img loading="lazy"
+                                src="./Nqobile Sibiya - Computer Information Science Student_files/MTA-Introduction_to_Programming_Using_Python-600x600.png"
+                                alt="MTA Python Certification" class="w-24 h-24 mx-auto mb-4 object-contain">
+                            <h3 class="text-lg font-semibold mb-1 text-blue-600">MTA: Intro to Programming Using Python
+                            </h3>
+                            <p class="text-sm text-gray-500 dark:text-gray-300 mb-3">Microsoft</p>
+                        </div>
+                        <a href="https://www.credly.com/badges/YOUR_BADGE_ID_HERE" target="_blank"
+                            rel="noopener noreferrer"
+                            class="mt-auto inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-3 rounded text-xs">
+                            View on Credly
+                        </a>
+                    </div>
+                    <div
+                        class="content-card certification-card text-center hover:shadow-xl transition-shadow duration-300 flex flex-col justify-between">
+                        <div>
+                            <img loading="lazy"
+                                src="./Nqobile Sibiya - Computer Information Science Student_files/MTA-Introduction_to_Programming_Using_HTML_and_CSS-600x600.png"
+                                alt="MTA HTML/CSS Certification" class="w-24 h-24 mx-auto mb-4 object-contain">
+                            <h3 class="text-lg font-semibold mb-1 text-blue-600">MTA: Intro to Programming Using HTML &
+                                CSS</h3>
+                            <p class="text-sm text-gray-500 dark:text-gray-300 mb-3">Microsoft</p>
+                        </div>
+                        <a href="https://www.credly.com/badges/YOUR_BADGE_ID_HERE" target="_blank"
+                            rel="noopener noreferrer"
+                            class="mt-auto inline-block bg-blue-500 hover:bg-blue-600 text-white font-bold py-1 px-3 rounded text-xs">
+                            View on Credly
+                        </a>
+                    </div>
+                    <div
+                        class="content-card certification-card text-center hover:shadow-xl transition-shadow duration-300 flex flex-col justify-between bg-white dark:bg-gray-800 rounded-lg overflow-hidden shadow-md">
+                        <div>
+                            <img src="./Aws-network-cert.jpeg" alt="AWS Networking Certification Badge"
+                                class="mx-auto mb-4 h-20 object-contain">
+                            <h3 class="text-lg font-semibold mb-1 text-yellow-700 dark:text-yellow-500">AWS Networking
+                                Basics</h3>
+                            <p class="text-sm text-gray-500 dark:text-gray-400 mb-3">Amazon Web Services</p>
+                        </div>
+                    </div>
+                    <div
+                        class="content-card certification-card text-center hover:shadow-xl transition-shadow duration-300 flex flex-col justify-between">
+                        <div>
+                            <img src="https://images.credly.com/size/340x340/images/0e284c3f-5164-4b21-8660-0d84737941bc/image.png"
+                                alt="AWS Certified Solutions Architect - Associate"
+                                class="w-24 h-24 mx-auto mb-4 object-contain">
+                            <h3 class="text-lg font-semibold mb-1 text-yellow-700 dark:text-yellow-500">AWS Certified
+                                Solutions Architect - Associate</h3>
+                            <p class="text-sm text-gray-500 dark:text-gray-300 mb-3">Amazon Web Services</p>
+                        </div>
+                        <a href="https://www.credly.com/badges/3e1431b7-35c3-4f12-8332-03badbaad10e/public_url"
+                            target="_blank" rel="noopener noreferrer"
+                            class="mt-auto inline-block bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-1 px-3 rounded text-xs">
+                            View on Credly
+                        </a>
+                    </div>
+                    <div
+                        class="content-card certification-card text-center hover:shadow-xl transition-shadow duration-300 flex flex-col justify-between">
+                        <div>
+                            <img src="https://images.credly.com/size/340x340/images/4d4693bb-530e-4bca-9327-de07f3aa2348/image.png"
+                                alt="AWS Certified AI Practitioner" class="w-24 h-24 mx-auto mb-4 object-contain">
+                            <h3 class="text-lg font-semibold mb-1 text-yellow-700 dark:text-yellow-500">AWS Certified
+                                AI Practitioner</h3>
+                            <p class="text-sm text-gray-500 dark:text-gray-300 mb-3">Amazon Web Services</p>
+                        </div>
+                        <a href="https://www.credly.com/users/nqobile-sibiya/badges" target="_blank"
+                            rel="noopener noreferrer"
+                            class="mt-auto inline-block bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-1 px-3 rounded text-xs">
+                            View on Credly
+                        </a>
+                    </div>
+                    <div
+                        class="content-card certification-card text-center hover:shadow-xl transition-shadow duration-300 flex flex-col justify-between">
+                        <div>
+                            <img src="https://images.credly.com/size/340x340/images/2784d0d8-327c-406f-971e-571f9a09fa67/image.png"
+                                alt="AWS Cloud Quest: Cloud Practitioner" class="w-24 h-24 mx-auto mb-4 object-contain">
+                            <h3 class="text-lg font-semibold mb-1 text-yellow-700 dark:text-yellow-500">AWS Cloud Quest:
+                                Cloud Practitioner</h3>
+                            <p class="text-sm text-gray-500 dark:text-gray-300 mb-3">Amazon Web Services</p>
+                        </div>
+                        <a href="https://www.credly.com/users/nqobile-sibiya/badges" target="_blank"
+                            rel="noopener noreferrer"
+                            class="mt-auto inline-block bg-yellow-500 hover:bg-yellow-600 text-white font-bold py-1 px-3 rounded text-xs">
+                            View on Credly
+                        </a>
+                    </div>
+                    <div
+                        class="content-card certification-card text-center hover:shadow-xl transition-shadow duration-300 flex flex-col justify-between">
+                        <div>
+                            <img src="https://images.credly.com/size/340x340/images/c1c14c0b-0165-4f64-8fd2-7b36986aed9a/OCI_AI_2025_Foundations.png"
+                                alt="Oracle Cloud Infrastructure 2025 AI Foundations Associate"
+                                class="w-24 h-24 mx-auto mb-4 object-contain">
+                            <h3 class="text-lg font-semibold mb-1 text-red-600 dark:text-red-400">Oracle Cloud AI
+                                Foundations Associate</h3>
+                            <p class="text-sm text-gray-500 dark:text-gray-300 mb-3">Oracle</p>
+                        </div>
+                        <a href="https://www.credly.com/users/nqobile-sibiya/badges#other" target="_blank"
+                            rel="noopener noreferrer"
+                            class="mt-auto inline-block bg-red-500 hover:bg-red-600 text-white font-bold py-1 px-3 rounded text-xs">
+                            View on Credly
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="py-20 bg-gray-50 dark:bg-gray-800 fade-in-section">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold text-center mb-12 dark:text-white">My Projects</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    <div
+                        class="content-card bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col">
+                        <a href="https://youtu.be/qlKQAB2iiqQ" target="_blank" rel="noopener noreferrer" class="block">
+                            <img loading="lazy"
+                                src="./Nqobile Sibiya - Computer Information Science Student_files/maxresdefault.jpg"
+                                alt="Project 1 Thumbnail" class="w-full h-48 object-cover">
+                        </a>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold mb-2 text-blue-600 dark:text-blue-400">E-commerce Platform</h3>
+                            <p class="text-gray-700 dark:text-gray-300 mb-4 flex-grow">A full-stack e-commerce website
+                                with features like product catalog, shopping cart, and user authentication.</p>
+                            <a href="https://youtu.be/qlKQAB2iiqQ" target="_blank" rel="noopener noreferrer"
+                                class="inline-block mt-auto text-blue-500 dark:text-blue-400 hover:underline">
+                                View on YouTube <i class="fas fa-external-link-alt ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div
+                        class="content-card bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col">
+                        <a href="https://youtu.be/e0ePOGZzB3Y" target="_blank" rel="noopener noreferrer" class="block">
+                            <img loading="lazy"
+                                src="./Nqobile Sibiya - Computer Information Science Student_files/maxresdefault(1).jpg"
+                                alt="Project 2 Thumbnail" class="w-full h-48 object-cover">
+                        </a>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold mb-2 text-blue-600 dark:text-blue-400">Mobile Banking App</h3>
+                            <p class="text-gray-700 dark:text-gray-300 mb-4 flex-grow">An Android application for
+                                managing bank accounts, transferring funds, and viewing transaction history.</p>
+                            <a href="https://youtu.be/e0ePOGZzB3Y" target="_blank" rel="noopener noreferrer"
+                                class="inline-block mt-auto text-blue-500 dark:text-blue-400 hover:underline">
+                                View on YouTube <i class="fas fa-external-link-alt ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div
+                        class="content-card bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col">
+                        <a href="https://youtu.be/ssj81DV0_uM" target="_blank" rel="noopener noreferrer" class="block">
+                            <img loading="lazy"
+                                src="./Nqobile Sibiya - Computer Information Science Student_files/maxresdefault(2).jpg"
+                                alt="Project 3 Thumbnail" class="w-full h-48 object-cover">
+                        </a>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold mb-2 text-blue-600 dark:text-blue-400">Cloud Data Warehouse
+                            </h3>
+                            <p class="text-gray-700 dark:text-gray-300 mb-4 flex-grow">A project demonstrating the
+                                implementation of a data warehouse on AWS, using S3, Redshift, and Glue.</p>
+                            <a href="https://youtu.be/ssj81DV0_uM" target="_blank" rel="noopener noreferrer"
+                                class="inline-block mt-auto text-blue-500 dark:text-blue-400 hover:underline">
+                                View on YouTube <i class="fas fa-external-link-alt ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div
+                        class="content-card bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col">
+                        <a href="https://youtu.be/eu_Z9ffnEDE" target="_blank" rel="noopener noreferrer" class="block">
+                            <img loading="lazy"
+                                src="./Nqobile Sibiya - Computer Information Science Student_files/maxresdefault(3).jpg"
+                                alt="Project 4 Thumbnail" class="w-full h-48 object-cover">
+                        </a>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold mb-2 text-blue-600 dark:text-blue-400">Project Management Tool
+                            </h3>
+                            <p class="text-gray-700 dark:text-gray-300 mb-4 flex-grow">A desktop application for
+                                tracking project tasks, deadlines, and team collaboration.</p>
+                            <a href="https://youtu.be/eu_Z9ffnEDE" target="_blank" rel="noopener noreferrer"
+                                class="inline-block mt-auto text-blue-500 dark:text-blue-400 hover:underline">
+                                View on YouTube <i class="fas fa-external-link-alt ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div
+                        class="content-card bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col">
+                        <a href="https://youtu.be/cvjfoRxQlRY" target="_blank" rel="noopener noreferrer" class="block">
+                            <img loading="lazy"
+                                src="./Nqobile Sibiya - Computer Information Science Student_files/maxresdefault(4).jpg"
+                                alt="Project 5 Thumbnail" class="w-full h-48 object-cover">
+                        </a>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold mb-2 text-blue-600 dark:text-blue-400">IT Ticketing System</h3>
+                            <p class="text-gray-700 dark:text-gray-300 mb-4 flex-grow">A web-based system for managing
+                                IT support tickets, built with Java Spring and a MySQL database.</p>
+                            <a href="https://youtu.be/cvjfoRxQlRY" target="_blank" rel="noopener noreferrer"
+                                class="inline-block mt-auto text-blue-500 dark:text-blue-400 hover:underline">
+                                View on YouTube <i class="fas fa-external-link-alt ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div
+                        class="content-card bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col">
+                        <a href="https://youtu.be/P7vY7QRaFTg" target="_blank" rel="noopener noreferrer" class="block">
+                            <img loading="lazy"
+                                src="./Nqobile Sibiya - Computer Information Science Student_files/maxresdefault(5).jpg"
+                                alt="Project 6 Thumbnail" class="w-full h-48 object-cover">
+                        </a>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold mb-2 text-blue-600 dark:text-blue-400">Network Monitoring
+                                Dashboard</h3>
+                            <p class="text-gray-700 dark:text-gray-300 mb-4 flex-grow">A real-time dashboard to
+                                visualize network traffic and performance metrics.</p>
+                            <a href="https://youtu.be/P7vY7QRaFTg" target="_blank" rel="noopener noreferrer"
+                                class="inline-block mt-auto text-blue-500 dark:text-blue-400 hover:underline">
+                                View on YouTube <i class="fas fa-external-link-alt ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div
+                        class="content-card bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col">
+                        <a href="https://youtu.be/FyGzSRJ4-HY" target="_blank" rel="noopener noreferrer" class="block">
+                            <img loading="lazy"
+                                src="./Nqobile Sibiya - Computer Information Science Student_files/maxresdefault(6).jpg"
+                                alt="Project 7 Thumbnail" class="w-full h-48 object-cover">
+                        </a>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold mb-2 text-blue-600 dark:text-blue-400">System Design Showcase
+                            </h3>
+                            <p class="text-gray-700 dark:text-gray-300 mb-4 flex-grow">A presentation of a scalable
+                                system architecture for a modern web application.</p>
+                            <a href="https://youtu.be/FyGzSRJ4-HY" target="_blank" rel="noopener noreferrer"
+                                class="inline-block mt-auto text-blue-500 dark:text-blue-400 hover:underline">
+                                View on YouTube <i class="fas fa-external-link-alt ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div
+                        class="content-card bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col">
+                        <a href="https://youtu.be/_Z3ELCvuO94" target="_blank" rel="noopener noreferrer" class="block">
+                            <img loading="lazy"
+                                src="./Nqobile Sibiya - Computer Information Science Student_files/maxresdefault(7).jpg"
+                                alt="Project 8 Thumbnail" class="w-full h-48 object-cover">
+                        </a>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold mb-2 text-blue-600 dark:text-blue-400">Cloud Development
+                                Project</h3>
+                            <p class="text-gray-700 dark:text-gray-300 mb-4 flex-grow">Demonstration of containerizing
+                                an application and deploying it to a cloud environment.</p>
+                            <a href="https://youtu.be/_Z3ELCvuO94" target="_blank" rel="noopener noreferrer"
+                                class="inline-block mt-auto text-blue-500 dark:text-blue-400 hover:underline">
+                                View on YouTube <i class="fas fa-external-link-alt ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div
+                        class="content-card bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col">
+                        <a href="https://youtu.be/FvPhwE9DI3c" target="_blank" rel="noopener noreferrer" class="block">
+                            <img loading="lazy"
+                                src="./Nqobile Sibiya - Computer Information Science Student_files/maxresdefault(8).jpg"
+                                alt="Project 9 Thumbnail" class="w-full h-48 object-cover">
+                        </a>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold mb-2 text-blue-600 dark:text-blue-400">Database Management Demo
+                            </h3>
+                            <p class="text-gray-700 dark:text-gray-300 mb-4 flex-grow">A tutorial on setting up and
+                                managing a NoSQL database with MongoDB.</p>
+                            <a href="https://youtu.be/FvPhwE9DI3c" target="_blank" rel="noopener noreferrer"
+                                class="inline-block mt-auto text-blue-500 dark:text-blue-400 hover:underline">
+                                View on YouTube <i class="fas fa-external-link-alt ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- AI Sign Language Translator -->
+                    <div
+                        class="content-card bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col">
+                        <a href="https://github.com/nqobile-x/AI-Sign-Language-Translator" target="_blank"
+                            rel="noopener noreferrer" class="block" title="View AI Sign Language Translator on GitHub">
+                            <div
+                                class="w-full h-48 bg-gradient-to-br from-purple-600 to-indigo-700 flex items-center justify-center">
+                                <i class="fas fa-sign-language text-6xl text-white"></i>
+                            </div>
+                        </a>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold mb-2 text-blue-600 dark:text-blue-400">AI Sign Language
+                                Translator</h3>
+                            <p class="text-gray-700 dark:text-gray-300 mb-4 flex-grow">An advanced AI-powered system
+                                that enables seamless communication between deaf, hard-of-hearing, and hearing
+                                individuals through sign language translation.</p>
+                            <a href="https://github.com/nqobile-x/AI-Sign-Language-Translator" target="_blank"
+                                rel="noopener noreferrer"
+                                class="inline-block mt-auto text-blue-500 dark:text-blue-400 hover:underline">
+                                View on GitHub <i class="fas fa-external-link-alt ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- VisionAi -->
+                    <div
+                        class="content-card bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col">
+                        <a href="https://github.com/nqobile-x/VisionAi" target="_blank" rel="noopener noreferrer"
+                            class="block" title="View VisionAi on GitHub">
+                            <div
+                                class="w-full h-48 bg-gradient-to-br from-blue-600 to-cyan-500 flex items-center justify-center">
+                                <i class="fas fa-eye text-6xl text-white"></i>
+                            </div>
+                        </a>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold mb-2 text-blue-600 dark:text-blue-400">VisionAi</h3>
+                            <p class="text-gray-700 dark:text-gray-300 mb-4 flex-grow">AI-powered computer vision
+                                project leveraging machine learning for image analysis and visual recognition tasks.</p>
+                            <a href="https://github.com/nqobile-x/VisionAi" target="_blank" rel="noopener noreferrer"
+                                class="inline-block mt-auto text-blue-500 dark:text-blue-400 hover:underline">
+                                View on GitHub <i class="fas fa-external-link-alt ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- OutbreakOracle -->
+                    <div
+                        class="content-card bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col">
+                        <a href="https://github.com/nqobile-x/OutbreakOracle" target="_blank" rel="noopener noreferrer"
+                            class="block" title="View OutbreakOracle on GitHub">
+                            <div
+                                class="w-full h-48 bg-gradient-to-br from-green-600 to-teal-500 flex items-center justify-center">
+                                <i class="fas fa-virus text-6xl text-white"></i>
+                            </div>
+                        </a>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold mb-2 text-blue-600 dark:text-blue-400">OutbreakOracle</h3>
+                            <p class="text-gray-700 dark:text-gray-300 mb-4 flex-grow">Disease outbreak prediction and
+                                tracking system using AI/ML to analyze epidemiological data and forecast potential
+                                health crises.</p>
+                            <a href="https://github.com/nqobile-x/OutbreakOracle" target="_blank"
+                                rel="noopener noreferrer"
+                                class="inline-block mt-auto text-blue-500 dark:text-blue-400 hover:underline">
+                                View on GitHub <i class="fas fa-external-link-alt ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- macOS Web Desktop Simulation -->
+                    <div
+                        class="content-card bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col">
+                        <a href="https://github.com/nqobile-x/macOS-Web-Desktop-Simulation" target="_blank"
+                            rel="noopener noreferrer" class="block" title="View macOS Web Desktop Simulation on GitHub">
+                            <div
+                                class="w-full h-48 bg-gradient-to-br from-gray-700 to-gray-900 flex items-center justify-center">
+                                <i class="fab fa-apple text-6xl text-white"></i>
+                            </div>
+                        </a>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold mb-2 text-blue-600 dark:text-blue-400">macOS Web Desktop
+                                Simulation</h3>
+                            <p class="text-gray-700 dark:text-gray-300 mb-4 flex-grow">A web-based simulation of the
+                                macOS desktop environment built with HTML, CSS, and JavaScript.</p>
+                            <a href="https://github.com/nqobile-x/macOS-Web-Desktop-Simulation" target="_blank"
+                                rel="noopener noreferrer"
+                                class="inline-block mt-auto text-blue-500 dark:text-blue-400 hover:underline">
+                                View on GitHub <i class="fas fa-external-link-alt ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Focus Time -->
+                    <div
+                        class="content-card bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col">
+                        <a href="https://github.com/nqobile-x/Focus-Time" target="_blank" rel="noopener noreferrer"
+                            class="block" title="View Focus Time on GitHub">
+                            <div
+                                class="w-full h-48 bg-gradient-to-br from-orange-500 to-red-500 flex items-center justify-center">
+                                <i class="fas fa-clock text-6xl text-white"></i>
+                            </div>
+                        </a>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold mb-2 text-blue-600 dark:text-blue-400">Focus Time</h3>
+                            <p class="text-gray-700 dark:text-gray-300 mb-4 flex-grow">A productivity and time
+                                management application designed to help users focus and track their work sessions
+                                effectively.</p>
+                            <a href="https://github.com/nqobile-x/Focus-Time" target="_blank" rel="noopener noreferrer"
+                                class="inline-block mt-auto text-blue-500 dark:text-blue-400 hover:underline">
+                                View on GitHub <i class="fas fa-external-link-alt ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- WPF Recipe Application -->
+                    <div
+                        class="content-card bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col">
+                        <a href="https://github.com/nqobile-x/WPF-Recipe-Application" target="_blank"
+                            rel="noopener noreferrer" class="block" title="View WPF Recipe Application on GitHub">
+                            <div
+                                class="w-full h-48 bg-gradient-to-br from-yellow-500 to-amber-600 flex items-center justify-center">
+                                <i class="fas fa-utensils text-6xl text-white"></i>
+                            </div>
+                        </a>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold mb-2 text-blue-600 dark:text-blue-400">WPF Recipe Application
+                            </h3>
+                            <p class="text-gray-700 dark:text-gray-300 mb-4 flex-grow">A Windows Presentation Foundation
+                                (WPF) desktop application for managing and organizing recipes, built with C# and .NET.
+                            </p>
+                            <a href="https://github.com/nqobile-x/WPF-Recipe-Application" target="_blank"
+                                rel="noopener noreferrer"
+                                class="inline-block mt-auto text-blue-500 dark:text-blue-400 hover:underline">
+                                View on GitHub <i class="fas fa-external-link-alt ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- Aura Orb -->
+                    <div
+                        class="content-card bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col">
+                        <a href="https://github.com/nqobile-x/Aura-Orb" target="_blank" rel="noopener noreferrer"
+                            class="block" title="View Aura Orb on GitHub">
+                            <div
+                                class="w-full h-48 bg-gradient-to-br from-pink-500 to-purple-600 flex items-center justify-center">
+                                <i class="fas fa-circle text-6xl text-white"></i>
+                            </div>
+                        </a>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold mb-2 text-blue-600 dark:text-blue-400">Aura Orb</h3>
+                            <p class="text-gray-700 dark:text-gray-300 mb-4 flex-grow">A creative AI project exploring
+                                visual and interactive elements with modern web technologies.</p>
+                            <a href="https://github.com/nqobile-x/Aura-Orb" target="_blank" rel="noopener noreferrer"
+                                class="inline-block mt-auto text-blue-500 dark:text-blue-400 hover:underline">
+                                View on GitHub <i class="fas fa-external-link-alt ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- AI Song Generator -->
+                    <div
+                        class="content-card bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col">
+                        <a href="https://github.com/nqobile-x/AI-Song-Generator" target="_blank"
+                            rel="noopener noreferrer" class="block" title="View AI Song Generator on GitHub">
+                            <div
+                                class="w-full h-48 bg-gradient-to-br from-indigo-500 to-blue-600 flex items-center justify-center">
+                                <i class="fas fa-music text-6xl text-white"></i>
+                            </div>
+                        </a>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold mb-2 text-blue-600 dark:text-blue-400">AI Song Generator</h3>
+                            <p class="text-gray-700 dark:text-gray-300 mb-4 flex-grow">An AI-powered music generation
+                                tool that creates original compositions using machine learning algorithms.</p>
+                            <a href="https://github.com/nqobile-x/AI-Song-Generator" target="_blank"
+                                rel="noopener noreferrer"
+                                class="inline-block mt-auto text-blue-500 dark:text-blue-400 hover:underline">
+                                View on GitHub <i class="fas fa-external-link-alt ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <!-- GitHub Projects Card -->
+                    <div
+                        class="content-card bg-white dark:bg-gray-700 rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 flex flex-col">
+                        <a href="https://github.com/nqobile-x" target="_blank" rel="noopener noreferrer"
+                            title="View Nqobile's GitHub Projects" class="block">
+                            <div class="w-full h-48 bg-gray-900 flex items-center justify-center">
+                                <i class="fab fa-github text-6xl text-white"></i>
+                            </div>
+                        </a>
+                        <div class="p-6 flex flex-col flex-grow">
+                            <h3 class="text-xl font-bold mb-2 text-blue-600 dark:text-blue-400">GitHub Repository</h3>
+                            <p class="text-gray-700 dark:text-gray-300 mb-4 flex-grow">Explore my collection of
+                                projects, including source code and documentation on GitHub.</p>
+                            <a href="https://github.com/nqobile-x" target="_blank" rel="noopener noreferrer"
+                                class="inline-block mt-auto text-blue-500 dark:text-blue-400 hover:underline">
+                                View on GitHub <i class="fas fa-external-link-alt ml-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="resume" class="py-20 fade-in-section bg-gray-50 dark:bg-gray-800">
+            <div class="container mx-auto px-4 text-center">
+                <h2 class="text-3xl font-bold text-center mb-8 dark:text-white">My Resume</h2>
+                <p class="text-lg text-gray-600 dark:text-gray-300 mb-8 max-w-2xl mx-auto">For a more detailed look at
+                    my qualifications and experience, you can download my resume.</p>
+                <a href="./NQOBILE Sibiya Resume.docx.pdf" download="NQOBILE_Sibiya_Resume.pdf"
+                    class="inline-block bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg transition duration-300 shadow-md hover:shadow-lg">
+                    <i class="fas fa-download mr-2"></i> Download Resume (PDF)
+                </a>
+            </div>
+        </section>
+
+        <section id="contact" class="py-20 fade-in-section">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-8 dark:text-white">Contact Me</h2>
+                <div class="flex flex-wrap -mx-4">
+                    <div class="w-full md:w-1/3 px-4 mb-8">
+                        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 h-full">
+                            <div class="flex items-center mb-4">
+                                <i class="fas fa-envelope text-blue-500 text-2xl mr-4"></i>
+                                <div>
+                                    <h3 class="font-bold">Email</h3>
+                                    <p class="text-gray-600 dark:text-gray-300">Jhk3119@gmail.com</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-300">Feel free to email me for any inquiries or
+                                collaboration opportunities.</p>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/3 px-4 mb-8">
+                        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 h-full">
+                            <div class="flex items-center mb-4">
+                                <i class="fas fa-map-marker-alt text-blue-500 text-2xl mr-4"></i>
+                                <div>
+                                    <h3 class="font-bold">Location</h3>
+                                    <p class="text-gray-600 dark:text-gray-300">Johannesburg, Gauteng</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-300">Based in Johannesburg, but open to remote
+                                opportunities worldwide.</p>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/3 px-4 mb-8">
+                        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-6 h-full">
+                            <div class="flex items-center mb-4">
+                                <i class="fab fa-linkedin text-blue-500 text-2xl mr-4"></i>
+                                <div>
+                                    <h3 class="font-bold">LinkedIn</h3>
+                                    <p class="text-gray-600 dark:text-gray-300">Connect with me</p>
+                                </div>
+                            </div>
+                            <p class="text-gray-600 dark:text-gray-300">Let's connect on LinkedIn for professional
+                                networking.</p>
+                            <a href="https://www.linkedin.com/in/nqobile-sibiya-530657218/" target="_blank"
+                                rel="noopener noreferrer"
+                                class="text-blue-500 dark:text-blue-400 hover:underline mt-2 inline-block">
+                                Visit My Profile
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <footer class="bg-gray-800 text-white py-8">
+            <div class="container mx-auto px-4 text-center">
+                <p>&copy; 2025 Nqobile Sibiya. All rights reserved.</p>
+            </div>
+        </footer>
+    </main>
+
+    <button id="back-to-top" aria-label="Scroll to top of page" title="Scroll to top of page"
+        class="fixed bottom-5 right-5 bg-blue-500 hover:bg-blue-600 text-white p-3 rounded-full shadow-lg hidden transition-opacity duration-300 opacity-0 z-50">
+        <i class="fas fa-arrow-up" aria-hidden="true"></i>
+    </button>
+
+    <script src="script.js"></script>
+    <script>
+        // Back to top button functionality
+        const backToTopButton = document.getElementById('back-to-top');
+
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 100) {
+                backToTopButton.classList.remove('hidden');
+                setTimeout(() => backToTopButton.style.opacity = '1', 50);
+            } else {
+                backToTopButton.style.opacity = '0';
+                setTimeout(() => backToTopButton.classList.add('hidden'), 300);
+            }
+        });
+
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Initialize fade-in sections and timeline items
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.fade-in-section, .timeline-item').forEach(element => {
+            observer.observe(element);
+        });
+
+        // Add class to elements for 3D text effect
+        document.querySelectorAll('h1, h2, h3').forEach(heading => {
+            heading.classList.add('text-3d');
+        });
+
+        // Cursor trail effect
+        const cursorTrails = Array.from({ length: 5 }, () => {
+            const div = document.createElement('div');
+            div.className = 'cursor-trail';
+            document.body.appendChild(div);
+            return div;
+        });
+
+        let mouseX = 0;
+        let mouseY = 0;
+        let trailIndex = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX;
+            mouseY = e.clientY;
+
+            // Update the position of the current trail dot
+            const currentTrail = cursorTrails[trailIndex];
+            currentTrail.style.left = `${mouseX}px`;
+            currentTrail.style.top = `${mouseY}px`;
+
+            // Move to next trail dot
+            trailIndex = (trailIndex + 1) % cursorTrails.length;
+        });
+
+        // Hide trails when mouse leaves the window
+        document.addEventListener('mouseleave', () => {
+            cursorTrails.forEach(trail => {
+                trail.style.opacity = '0';
+            });
+        });
+
+        // Show trails when mouse enters the window
+        document.addEventListener('mouseenter', () => {
+            cursorTrails.forEach(trail => {
+                trail.style.opacity = '1';
+            });
+        });
+    </script>
+</body>
+
+</html>

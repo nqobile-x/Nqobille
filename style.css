@@ -1,0 +1,534 @@
+/* Basic Reset & Dark Theme Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+    /* cursor styling removed */
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    /* Font closer to reference */
+    line-height: 1.6;
+    color: #e0e0e0;
+    /* Light text for dark background */
+    background-color: #1a1a1a;
+    /* Dark background */
+}
+
+header {
+    background: #222;
+    /* Slightly lighter dark header */
+    color: #fff;
+    padding: 1rem 0;
+    text-align: center;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.3);
+    /* Adjusted shadow for dark */
+}
+
+header h1 {
+    margin-bottom: 0.5rem;
+    font-size: 2rem;
+}
+
+header nav ul {
+    list-style: none;
+}
+
+header nav ul li {
+    display: inline;
+    margin: 0 10px;
+    /* Adjusted spacing */
+}
+
+header nav ul li a {
+    color: #ccc;
+    /* Lighter gray link color */
+    text-decoration: none;
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+header nav ul li a:hover,
+header nav ul li a.active {
+    /* Add active state if needed later */
+    color: #fff;
+    background-color: #444;
+    /* Darker highlight on hover */
+}
+
+main {
+    padding: 20px;
+    max-width: 900px;
+    /* Adjusted width */
+    margin: 30px auto;
+    background: #282828;
+    /* Dark background for main content area */
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+}
+
+section {
+    margin-bottom: 2.5rem;
+    padding: 1.5rem;
+    border-bottom: 1px solid #444;
+    /* Darker border */
+    opacity: 1;
+    /* Remove fade-in for now to match reference */
+    transform: translateY(0);
+    /* transition: opacity 0.6s ease-out, transform 0.6s ease-out; */
+    /* Commented out fade-in */
+}
+
+/* Remove fade-in related classes if needed from JS later */
+/* section.visible { ... } */
+
+section:last-of-type {
+    /* Target last section specifically */
+    border-bottom: none;
+}
+
+h2 {
+    margin-bottom: 1.5rem;
+    color: #00aaff;
+    /* Brighter blue for dark theme */
+    font-size: 1.7rem;
+    border-bottom: 2px solid #00aaff;
+    padding-bottom: 0.5rem;
+    display: inline-block;
+}
+
+/* Profile Picture Styling */
+.profile-pic {
+    width: 120px;
+    /* Slightly smaller */
+    height: 120px;
+    border-radius: 50%;
+    object-fit: cover;
+    float: left;
+    margin-right: 20px;
+    margin-bottom: 10px;
+    border: 3px solid #555;
+    /* Darker border */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Clearfix for float */
+#about::after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+/* Hero Section Specific Styles */
+#hero {
+    text-align: center;
+    background-color: transparent;
+    /* Remove light background */
+    padding: 2rem 1rem;
+    margin: 0;
+    border-radius: 0;
+    border-bottom: 1px solid #444;
+    /* Add border back */
+}
+
+#hero h2 {
+    color: #fff;
+    /* White heading */
+    border-bottom: none;
+    font-size: 2.2rem;
+    margin-bottom: 0.5rem;
+}
+
+#hero p {
+    font-size: 1.1rem;
+    color: #ccc;
+    /* Light gray */
+    margin-bottom: 1.5rem;
+    /* Space before button */
+}
+
+/* Button Styles */
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #007bff;
+    /* Standard blue button */
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #0056b3;
+    /* Darker blue on hover */
+}
+
+.btn-primary {
+    background-color: #00aaff;
+    /* Match heading blue */
+}
+
+.btn-primary:hover {
+    background-color: #0088cc;
+    /* Darker shade */
+}
+
+/* Education Section */
+.education-item {
+    margin-bottom: 1.5rem;
+    padding-left: 1rem;
+    border-left: 3px solid #00aaff;
+    /* Blue accent line */
+}
+
+.education-item h3 {
+    margin-bottom: 0.3rem;
+    color: #f0f0f0;
+}
+
+.education-item p {
+    margin-bottom: 0.2rem;
+    color: #bbb;
+    font-size: 0.95rem;
+}
+
+.education-item p i {
+    color: #aaa;
+}
+
+.education-item ul {
+    list-style: disc;
+    margin-left: 20px;
+    margin-top: 0.5rem;
+    color: #ccc;
+}
+
+/* Skills Section Layout */
+#skills>div {
+    margin-bottom: 1.5em;
+}
+
+#skills h3 {
+    color: #f0f0f0;
+    margin-bottom: 0.7em;
+    font-size: 1.1rem;
+}
+
+#skills p {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+#skills p span {
+    background-color: #444;
+    /* Darker background for tags */
+    color: #e0e0e0;
+    padding: 6px 14px;
+    border-radius: 5px;
+    /* Less rounded */
+    font-size: 0.9rem;
+    font-weight: 500;
+    border: 1px solid #555;
+}
+
+/* Experience Section Styling */
+#experience h3 {
+    color: #f0f0f0;
+    margin-bottom: 0.2em;
+}
+
+#experience p {
+    color: #ccc;
+}
+
+#experience p i {
+    color: #aaa;
+    font-size: 0.9em;
+    display: block;
+    margin-bottom: 0.5em;
+}
+
+/* Certifications Section */
+#certifications p {
+    margin-bottom: 1rem;
+}
+
+/* Contact Section Styling */
+#contact ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+#contact li {
+    margin-bottom: 0.8em;
+}
+
+#contact a {
+    color: #00aaff;
+    /* Match heading blue */
+    text-decoration: none;
+    font-weight: 500;
+}
+
+#contact a:hover {
+    text-decoration: underline;
+}
+
+footer {
+    text-align: center;
+    margin-top: 3rem;
+    padding: 1.5rem;
+    background: #222;
+    /* Match header */
+    color: #ccc;
+}
+
+
+
+/* Timeline Section Styles */
+.timeline-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    position: relative;
+    padding: 2rem 0;
+}
+
+.timeline {
+    position: relative;
+    padding: 2rem 0;
+}
+
+.timeline::before {
+    content: '';
+    position: absolute;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(to bottom, #00aaff, #0056b3);
+    left: 50%;
+    transform: translateX(-50%);
+    border-radius: 2px;
+}
+
+.timeline-item {
+    display: flex;
+    justify-content: flex-end;
+    padding: 40px 0;
+    width: 50%;
+    position: relative;
+    opacity: 0;
+    transform: translateX(-100px);
+    transition: all 0.6s ease;
+}
+
+.timeline-item.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+.timeline-item:nth-child(even) {
+    align-self: flex-end;
+    justify-content: flex-start;
+    transform: translateX(100px);
+}
+
+.timeline-item:nth-child(even).visible {
+    transform: translateX(0);
+}
+
+.timeline-content {
+    width: 90%;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+}
+
+.timeline-content::before {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    background: #00aaff;
+    border-radius: 50%;
+    top: 50%;
+    transform: translateY(-50%);
+    right: -60px;
+    box-shadow: 0 0 20px rgba(0, 170, 255, 0.5);
+}
+
+.timeline-item:nth-child(even) .timeline-content::before {
+    left: -60px;
+    right: auto;
+}
+
+.timeline-date {
+    color: #00aaff;
+    font-size: 0.9rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.timeline-title {
+    color: #fff;
+    font-size: 1.2rem;
+    margin-bottom: 0.5rem;
+    font-weight: bold;
+}
+
+.timeline-description {
+    color: #ccc;
+    font-size: 0.95rem;
+    line-height: 1.5;
+}
+
+/* Timeline Animation */
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(0, 170, 255, 0.4);
+    }
+
+    70% {
+        box-shadow: 0 0 0 10px rgba(0, 170, 255, 0);
+    }
+
+    100% {
+        box-shadow: 0 0 0 0 rgba(0, 170, 255, 0);
+    }
+}
+
+.timeline-content::before {
+    animation: pulse 2s infinite;
+}
+
+/* Dark mode adjustments for timeline */
+.dark .timeline-content {
+    background: rgba(31, 41, 55, 0.95);
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark .timeline-title {
+    color: #e5e7eb;
+}
+
+.dark .timeline-description {
+    color: #9ca3af;
+}
+
+/* Enhanced Navigation Styles */
+.nav-link {
+    position: relative;
+    padding: 0.5rem 1rem;
+    transition: all 0.3s ease;
+    border-radius: 8px;
+    background: linear-gradient(to right, transparent 50%, rgba(0, 170, 255, 0.1) 50%);
+    background-size: 200% 100%;
+    background-position: 0 0;
+}
+
+.nav-link:hover {
+    background-position: -100% 0;
+    transform: translateY(-2px);
+}
+
+.nav-link::before {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    width: 0;
+    height: 2px;
+    background: #00aaff;
+    transform: translateX(-50%);
+    transition: width 0.3s ease;
+}
+
+.nav-link:hover::before {
+    width: 70%;
+}
+
+.nav-link.active::before {
+    width: 70%;
+}
+
+/* GitHub icon specific styling */
+.nav-link .fab.fa-github {
+    transition: transform 0.3s ease;
+}
+
+.nav-link:hover .fab.fa-github {
+    transform: rotate(360deg) scale(1.2);
+}
+
+/* Mobile menu enhancements */
+.mobile-menu {
+    background: rgba(34, 34, 34, 0.95);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.mobile-menu-button {
+    transition: transform 0.3s ease;
+}
+
+.mobile-menu-button:hover {
+    transform: rotate(90deg);
+}
+
+/* Dark mode enhancements */
+.dark .nav-link:hover {
+    background: rgba(0, 170, 255, 0.1);
+}
+
+.dark .mobile-menu {
+    background: rgba(17, 24, 39, 0.95);
+}
+
+/* Navigation animation for scroll */
+.nav-scrolled {
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background: rgba(34, 34, 34, 0.9);
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    transform: translateY(0);
+    transition: all 0.3s ease;
+}
+
+.nav-hidden {
+    transform: translateY(-100%);
+}
+
+/* Menu item hover effect */
+@keyframes menuHover {
+    0% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+
+    100% {
+        transform: scale(1);
+    }
+}
+
+.nav-link:hover {
+    animation: menuHover 0.3s ease-in-out;
+}

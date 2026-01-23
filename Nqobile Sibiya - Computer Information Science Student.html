@@ -1,0 +1,1727 @@
+<!DOCTYPE html>
+<!-- saved from url=(0036)https://nqobza25.github.io/Nqobille/ -->
+<html lang="en">
+
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <style>
+        body {
+            transition: opacity ease-in 0.2s;
+        }
+
+        body[unresolved] {
+            opacity: 0;
+            display: block;
+            overflow: hidden;
+            position: relative;
+        }
+    </style>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nqobile Sibiya - Computer Information Science Student</title>
+    <link href="./Nqobile Sibiya - Computer Information Science Student_files/tailwind.min.css" rel="stylesheet">
+    <script src="./Nqobile Sibiya - Computer Information Science Student_files/cdn.min.js.download" defer=""></script>
+    <style>
+        [x-cloak] {
+            display: none !important;
+        }
+
+        .gradient-bg {
+            background: linear-gradient(90deg, #4a90e2, #63b3ed);
+        }
+
+        .photo-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1rem;
+        }
+
+        .photo-item {
+            aspect-ratio: 1 / 1;
+            object-fit: cover;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .photo-item:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+    <nav class="bg-white shadow-lg sticky top-0 z-50" x-data="{ isOpen: false }">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex justify-between">
+                <div class="flex space-x-7">
+                    <a href="https://nqobza25.github.io/Nqobille/#" class="flex items-center py-4 px-2">
+                        <span class="font-semibold text-gray-500 text-lg">Nqobile Sibiya</span>
+                    </a>
+                </div>
+                <div class="hidden md:flex items-center space-x-1">
+                    <a href="https://nqobza25.github.io/Nqobille/#home"
+                        class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Home</a>
+                    <a href="https://nqobza25.github.io/Nqobille/#about"
+                        class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">About</a>
+                    <a href="https://nqobza25.github.io/Nqobille/#education"
+                        class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Education</a>
+                    <a href="https://nqobza25.github.io/Nqobille/#experience"
+                        class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Experience</a>
+                    <a href="https://nqobza25.github.io/Nqobille/#skills"
+                        class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Skills</a>
+                    <a href="https://nqobza25.github.io/Nqobille/#photos"
+                        class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">My
+                        Certifications</a>
+                    <a href="https://nqobza25.github.io/Nqobille/#contact"
+                        class="py-4 px-2 text-gray-500 font-semibold hover:text-blue-500 transition duration-300">Contact</a>
+                </div>
+                <div class="md:hidden flex items-center">
+                    <button @click="isOpen = !isOpen" class="outline-none mobile-menu-button"
+                        title="Toggle mobile menu">
+                        <svg class="w-6 h-6 text-gray-500 hover:text-blue-500" x-show="!isOpen" fill="none"
+                            stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewBox="0 0 24 24"
+                            stroke="currentColor">
+                            <path d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <div class="md:hidden" x-show="isOpen" x-transition:enter="transition ease-out duration-100 transform"
+            x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100"
+            x-transition:leave="transition ease-in duration-75 transform"
+            x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95"
+            style="display: none;">
+            <a href="https://nqobza25.github.io/Nqobille/#home"
+                class="block py-2 px-4 text-sm hover:bg-blue-500 hover:text-white">Home</a>
+            <a href="https://nqobza25.github.io/Nqobille/#about"
+                class="block py-2 px-4 text-sm hover:bg-blue-500 hover:text-white">About</a>
+            <a href="https://nqobza25.github.io/Nqobille/#education"
+                class="block py-2 px-4 text-sm hover:bg-blue-500 hover:text-white">Education</a>
+            <a href="https://nqobza25.github.io/Nqobille/#experience"
+                class="block py-2 px-4 text-sm hover:bg-blue-500 hover:text-white">Experience</a>
+            <a href="https://nqobza25.github.io/Nqobille/#skills"
+                class="block py-2 px-4 text-sm hover:bg-blue-500 hover:text-white">Skills</a>
+            <a href="https://nqobza25.github.io/Nqobille/#photos"
+                class="block py-2 px-4 text-sm hover:bg-blue-500 hover:text-white">My Certifications</a>
+            <a href="https://nqobza25.github.io/Nqobille/#contact"
+                class="block py-2 px-4 text-sm hover:bg-blue-500 hover:text-white">Contact</a>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Home Section -->
+        <section id="home" class="text-center py-20 gradient-bg text-white">
+            <h1 class="text-4xl font-bold mb-4">Nqobile Sibiya</h1>
+            <p class="text-xl mb-8">Computer Information Science Student | Application Development Enthusiast</p>
+            <a href="https://nqobza25.github.io/Nqobille/#contact"
+                class="bg-white text-blue-500 py-2 px-6 rounded-full font-bold hover:bg-gray-100 transition duration-300">Contact
+                Me</a>
+        </section>
+
+        <section id="about" class="py-20 bg-gradient-to-br from-blue-200 via-purple-100 to-pink-100">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center text-gray-800 mb-8">About Me</h2>
+                <div class="flex flex-col md:flex-row items-center">
+                    <div class="w-full md:w-1/3 px-4 mb-8 md:mb-0">
+                        <img src="./Nqobile Sibiya - Computer Information Science Student_files/1727130903603"
+                            alt="Nqobile Sibiya"
+                            class="rounded-full w-64 h-64 md:w-full md:h-auto shadow-lg object-cover mx-auto">
+                    </div>
+                    <div class="w-full md:w-2/3 px-4">
+                        <p class="text-lg text-gray-700 mb-4">Cloud Full-Stack Software Engineer (South Africa) with
+                            hands-on AWS and enterprise cloud skills, passionate about scalable, secure solutions and
+                            mentoring developers.
+
+                            Certified AWS Solutions Architect & AI Practitioner
+                            Experienced IT Tutor with 3+ years teaching programming, databases, and software engineering
+                            Skilled in cloud architecture, DevOps, system design, and customer-focused problem solving
+                            What I Do
+                            Build and troubleshoot cloud-native applications (AWS EC2, S3, VPC, RDS, Lambda)
+                            Design scalable, secure architectures and optimize cloud infrastructure
+                            Develop full-stack solutions with React, .NET Core, SQL Server, and RESTful APIs
+                            Automate workflows with Docker, CI/CD pipelines (GitHub Actions, Azure DevOps)
+                            Lead technical instruction and mentoring for diverse learners
+                            Collaborate on cross-functional teams and document technical resolutions</p>
+                        <a href="https://nqobza25.github.io/Nqobille/#contact"
+                            class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded transition duration-300">
+                            Get In Touch
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <style>
+            /* About Me Section */
+            #about {
+                background: linear-gradient(135deg, #73c4fa, #73c4fa);
+                /* Subtle gradient */
+            }
+
+            #projects {
+                background: linear-gradient(135deg, #73c4fa, #73c4fa);
+                /* Subtle gradient */
+            }
+
+            #photos {
+                background: linear-gradient(135deg, #73c4fa, #73c4fa);
+                /* Subtle gradient */
+            }
+
+            #skills {
+                background: linear-gradient(135deg, #73c4fa, #73c4fa);
+                /* Subtle gradient */
+            }
+
+            #about h2 {
+                /* Heading styles */
+                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            }
+
+            #about p {
+                /* Paragraph styles */
+                line-height: 1.6;
+                /* Improve readability */
+            }
+
+            #about img {
+                /* Image styles */
+                border: 4px solid white;
+                /* Add a white border */
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                /* Subtle box shadow */
+            }
+
+            /* Media Query for Responsive Image on smaller screens */
+            @media (max-width: 768px) {
+                #about img {
+                    width: 80%;
+                    margin-bottom: 2rem;
+                    /* Add margin below image on mobile */
+                }
+            }
+        </style>
+        <style>
+            /* ... (Your existing styles) ... */
+
+            #contact {
+                background-color: #e0f2fe;
+                /* Lighter sky blue background */
+                box-shadow: inset 0 -100px 150px -50px rgba(0, 0, 0, 0.3);
+                /* Subtle bottom shadow for depth */
+            }
+
+            #contact .animate-gradient {
+                background: linear-gradient(135deg, #87CEEB, #77B5FE);
+                /* Gradient with shifted angle */
+                background-size: 400% 400%;
+                animation: gradientAnimation 15s ease infinite;
+            }
+
+            #contact h2 {
+                color: #007bff;
+            }
+
+            #contact .bg-white {
+                /* Cards background */
+                background-color: rgba(255, 255, 255, 0.8);
+                /* Slightly transparent white for cards */
+                -webkit-backdrop-filter: blur(10px);
+                /* Add -webkit- prefix for Safari 9+ and iOS Safari 9+ */
+                backdrop-filter: blur(10px);
+                /* Add a subtle blur effect to the cards */
+            }
+
+            #contact .text-blue-500 {
+                color: #0c4a6e;
+            }
+        </style>
+        <section id="education" class="py-20 bg-gray-100">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-8 text-blue-500">Education</h2>
+
+                <div class="flex flex-col md:flex-row -mx-4">
+                    <div class="w-full md:w-1/2 px-4 mb-8 md:mb-0" x-data="{ expanded: false }">
+                        <div class="bg-white rounded-lg shadow-lg p-8 h-full relative overflow-hidden transition-all duration-300 h-64"
+                            :class="expanded ? &#39;h-auto&#39; : &#39;h-64&#39;">
+                            <h3 class="text-xl font-bold mb-2 text-blue-500">Bachelor's in Computer Science in
+                                Application Development</h3>
+                            <p class="text-gray-600 mb-2">IIe Varsity College, Sandton, Johannesburg</p>
+                            <p class="text-gray-600">February 2022 – Present (Final Year)</p>
+                            <ul class="list-disc list-inside mt-4 text-gray-600">
+                                <li>Java Programming</li>
+                                <li>Network Engineering</li>
+                                <li>System Analysis and Design</li>
+                                <li>C# Programming</li>
+                                <li>Cloud Development</li>
+                                <li>Databases and Advanced Databases</li>
+                                <li>IT Project Management</li>
+                            </ul>
+
+                            <button @click="expanded = !expanded"
+                                class="absolute bottom-0 right-0 p-2 text-blue-500 hover:text-blue-700">
+                                <span x-show="!expanded">Read More</span>
+                                <span x-show="expanded" style="display: none;">Read Less</span>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="w-full md:w-1/2 px-4" x-data="{ showModal: false }">
+                        <div class="bg-white rounded-lg shadow-lg p-8 h-full relative cursor-pointer"
+                            @click="showModal = true">
+                            <h3 class="text-xl font-bold mb-2 text-blue-500">CTU Training Solutions</h3>
+                            <p class="text-gray-600 mb-2">Auckland Park, Johannesburg</p>
+                            <p class="text-gray-600">2021</p>
+                            <p class="text-gray-600">Click to view details</p>
+                        </div>
+
+                        <div x-show="showModal"
+                            class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-50"
+                            style="display: none;">
+                            <div class="bg-white p-8 rounded-lg shadow-lg relative">
+                                <button @click="showModal = false"
+                                    class="absolute top-2 right-2 p-1 rounded-full hover:bg-gray-200">
+                                    <i class="fas fa-times"></i>
+                                </button>
+                                <h3 class="text-xl font-bold mb-2 text-blue-500">CTU Training Solutions</h3>
+                                <p class="text-gray-600 mb-2">Auckland Park, Johannesburg</p>
+                                <p class="text-gray-600">2021</p>
+                                <ul class="list-disc list-inside mt-4 text-gray-600">
+                                    <li>Robotic Development</li>
+                                    <li>Python Programming</li>
+                                    <li>Computer Architecture</li>
+                                    <li>Cloud Fundamentals</li>
+                                    <li>Network Architecture</li>
+                                    <li>Programmer Ethics</li>
+                                    <li>Principles of Program Design</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <style>
+            /* ... (Your existing styles) ... */
+
+            #education {
+                background-color: #5bbaf9;
+                /* ... other section styles ... */
+            }
+
+            #education h2 {
+                /* Main heading style */
+                text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+                /* Add a slight shadow */
+                color: #3182ce;
+                /* Blue color from Tailwind palette */
+            }
+
+            #education .rounded-lg {
+                /* Card base style */
+                border: 1px solid #e2e8f0;
+                /* Light border */
+                transition: transform 0.3s ease, box-shadow 0.3s ease;
+            }
+
+            #education .rounded-lg:hover {
+                transform: translateY(-5px);
+                /* Lift slightly on hover */
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            }
+
+            #education h3 {
+                /* Card title style */
+                color: #2b6cb0;
+                /* Darker blue from Tailwind palette */
+            }
+
+            #education ul {
+                /* List styling */
+                list-style-type: disc;
+                padding-left: 1.25rem;
+            }
+
+            #education li {
+                /* List item style */
+                margin-bottom: 0.25rem;
+                /* Reduce spacing */
+            }
+
+            #education li::before {
+                /* Custom disc style */
+                content: '';
+                display: inline-block;
+                width: 0.5rem;
+                height: 0.5rem;
+                background-color: #2b6cb0;
+                /* Dark blue disc */
+                border-radius: 50%;
+                margin-right: 0.5rem;
+            }
+        </style>
+        <!-- Experience Section -->
+        <section id="experience" class="py-20">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-8">Experience</h2>
+                <div class="flex flex-wrap -mx-4">
+                    <div class="w-full md:w-1/2 px-4 mb-8">
+                        <div class="bg-white rounded-lg shadow-lg p-8 h-full">
+                            <h3 class="text-xl font-bold mb-2">Tutor</h3>
+                            <p class="text-gray-600 mb-2">WeRTutors</p>
+                            <p class="text-gray-600 mb-4">March 2022 - Present</p>
+                            <p class="text-gray-600">Part-time tutor in information technology, helping students
+                                understand the field of IT along with practical programming knowledge like Java and SQL
+                                database management.</p>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 px-4 mb-8">
+                        <div class="bg-white rounded-lg shadow-lg p-8 h-full">
+                            <h3 class="text-xl font-bold mb-2">Cashier</h3>
+                            <p class="text-gray-600 mb-2">Green Way Fruit and Veg, Mpumalanga, South Africa</p>
+                            <p class="text-gray-600 mb-4">March 2014 - January 2022</p>
+                            <p class="text-gray-600">Worked as a cashier, receiving money and calculating change for
+                                customers along with counting supplies for the company.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <style>
+            #experience {
+                background-color: #5bbaf9;
+                /* ... other section styles ... */
+            }
+        </style>
+        <style>
+            /* ... (previous styles) ... */
+            .skill-card {
+                perspective: 1000px;
+                height: 150px;
+            }
+
+            .skill-card-inner {
+                position: relative;
+                width: 100%;
+                height: 100%;
+                text-align: center;
+                transition: transform 0.6s;
+                transform-style: preserve-3d;
+            }
+
+            .skill-card:hover .skill-card-inner {
+                transform: rotateY(180deg);
+            }
+
+            .skill-card-front,
+            .skill-card-back {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                backface-visibility: hidden;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: 0.5rem;
+            }
+
+            .skill-card-front {
+                background-color: #4a90e2;
+                color: white;
+            }
+
+            .skill-card-back {
+                background-color: #2c3e50;
+                color: white;
+                transform: rotateY(180deg);
+            }
+
+            .skill-icon {
+                font-size: 3rem;
+                margin-bottom: 0.5rem;
+            }
+        </style>
+        <!-- Skills Section -->
+        <section id="skills" class="py-20 bg-gray-100">
+            <div class="container mx-auto px-4">
+                <h2 class="text-4xl font-bold text-center mb-16 section-heading">Skills</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                    <div class="skill-card animate-fadeIn">
+                        <div class="skill-card-inner">
+                            <div class="skill-card-front">
+                                <div>
+                                    <i class="fas fa-code skill-icon"></i>
+                                    <h3 class="text-xl font-bold">Programming</h3>
+                                </div>
+                            </div>
+                            <div class="skill-card-back">
+                                <ul class="text-sm">
+                                    <li>Java</li>
+                                    <li>C#</li>
+                                    <li>Python</li>
+                                    <li>JavaScript</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-card animate-fadeIn">
+                        <div class="skill-card-inner">
+                            <div class="skill-card-front">
+                                <div>
+                                    <i class="fas fa-database skill-icon"></i>
+                                    <h3 class="text-xl font-bold">Databases</h3>
+                                </div>
+                            </div>
+                            <div class="skill-card-back">
+                                <ul class="text-sm">
+                                    <li>SQL</li>
+                                    <li>MySQL</li>
+                                    <li>MongoDB</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-card animate-fadeIn">
+                        <div class="skill-card-inner">
+                            <div class="skill-card-front">
+                                <div>
+                                    <i class="fas fa-laptop-code skill-icon"></i>
+                                    <h3 class="text-xl font-bold">Web Technologies</h3>
+                                </div>
+                            </div>
+                            <div class="skill-card-back">
+                                <ul class="text-sm">
+                                    <li>HTML</li>
+                                    <li>CSS</li>
+                                    <li>JavaScript</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="skill-card animate-fadeIn">
+                        <div class="skill-card-inner">
+                            <div class="skill-card-front">
+                                <div>
+                                    <i class="fas fa-tools skill-icon"></i>
+                                    <h3 class="text-xl font-bold">Tools</h3>
+                                </div>
+                            </div>
+                            <div class="skill-card-back">
+                                <ul class="text-sm">
+                                    <li>Microsoft Azure</li>
+                                    <li>Android Studio</li>
+                                    <li>Git &amp; GitHub</li>
+                                    <li>Visual Studio 2022</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ... (remaining body content) ... -->
+
+        <script>
+            // Add this script at the end of the body
+            document.addEventListener('DOMContentLoaded', (event) => {
+                const skillCards = document.querySelectorAll('.skill-card');
+                skillCards.forEach((card, index) => {
+                    setTimeout(() => {
+                        card.classList.add('animate-fadeIn');
+                    }, index * 200);
+                });
+            });
+        </script>
+        <section id="photos" class="py-20">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-8">My Certifications:</h2>
+
+                <div class="flex justify-center items-center mb-8">
+                    <a href="https://www.credly.com/users/nqobile-sibiya" target="_blank" rel="noopener"
+                        class="text-blue-500 hover:text-blue-700">
+                        <i class="fas fa-certificate mr-2"></i> Visit Nqobile Sibiya's Credly Profile
+                    </a>
+                </div>
+
+                <div class="image-container flex justify-center gap-4">
+                    <img src="./Nqobile Sibiya - Computer Information Science Student_files/MTA-Introduction_to_Programming_Using_JavaScript-600x600.png"
+                        alt="MTA: Introduction to Programming Using JavaScript - Certified 2021"
+                        class="rounded-lg shadow-lg">
+                    <img src="./Nqobile Sibiya - Computer Information Science Student_files/MTA-Introduction_to_Programming_Using_Python-600x600.png"
+                        alt="MTA: Introduction to Programming Using Python - Certified 2021"
+                        class="rounded-lg shadow-lg">
+                    <img src="./Nqobile Sibiya - Computer Information Science Student_files/MTA-Introduction_to_Programming_Using_HTML_and_CSS-600x600.png"
+                        alt="MTA: Introduction to Programming Using HTML and CSS - Certified 2021"
+                        class="rounded-lg shadow-lg">
+                </div>
+            </div>
+
+        </section>
+        <section id="projects" class="py-20 bg-gray-100">
+            <div class="container mx-auto px-4">
+                <h2 class="text-3xl font-bold text-center mb-8">My Projects</h2>
+
+                <div class="photo-grid">
+                    <div class="photo-item relative group">
+                        <img src="./Nqobile Sibiya - Computer Information Science Student_files/maxresdefault.jpg"
+                            alt="Video 1" class="rounded-lg shadow-lg w-full h-full object-cover">
+                        <a href="https://youtu.be/qlKQAB2iiqQ" target="_blank" rel="noopener"
+                            class="absolute inset-0 flex items-center justify-center opacity-0 bg-black bg-opacity-50 group-hover:opacity-100 transition duration-300 rounded-lg">
+                            <i class="fas fa-play-circle text-white text-4xl"></i>
+                            <span class="text-white text-lg ml-2">Video 1</span>
+                        </a>
+                    </div>
+                    <div class="photo-item relative group">
+                        <img src="./Nqobile Sibiya - Computer Information Science Student_files/maxresdefault(1).jpg"
+                            alt="Video 2" class="rounded-lg shadow-lg w-full h-full object-cover">
+                        <a href="https://youtu.be/e0ePOGZzB3Y" target="_blank" rel="noopener"
+                            class="absolute inset-0 flex items-center justify-center opacity-0 bg-black bg-opacity-50 group-hover:opacity-100 transition duration-300 rounded-lg">
+                            <i class="fas fa-play-circle text-white text-4xl"></i>
+                            <span class="text-white text-lg ml-2">Video 2</span>
+                        </a>
+                    </div>
+                    <div class="photo-item relative group">
+                        <img src="./Nqobile Sibiya - Computer Information Science Student_files/maxresdefault(2).jpg"
+                            alt="Video 3" class="rounded-lg shadow-lg w-full h-full object-cover">
+                        <a href="https://youtu.be/ssj81DV0_uM" target="_blank" rel="noopener"
+                            class="absolute inset-0 flex items-center justify-center opacity-0 bg-black bg-opacity-50 group-hover:opacity-100 transition duration-300 rounded-lg">
+                            <i class="fas fa-play-circle text-white text-4xl"></i>
+                            <span class="text-white text-lg ml-2">Video 3</span>
+                        </a>
+                    </div>
+                    <div class="photo-item relative group">
+                        <img src="./Nqobile Sibiya - Computer Information Science Student_files/maxresdefault(3).jpg"
+                            alt="Video 4" class="rounded-lg shadow-lg w-full h-full object-cover">
+                        <a href="https://youtu.be/eu_Z9ffnEDE" target="_blank" rel="noopener"
+                            class="absolute inset-0 flex items-center justify-center opacity-0 bg-black bg-opacity-50 group-hover:opacity-100 transition duration-300 rounded-lg">
+                            <i class="fas fa-play-circle text-white text-4xl"></i>
+                            <span class="text-white text-lg ml-2">Video 4</span>
+                        </a>
+                    </div>
+                    <div class="photo-item relative group">
+                        <img src="./Nqobile Sibiya - Computer Information Science Student_files/maxresdefault(4).jpg"
+                            alt="Video 6" class="rounded-lg shadow-lg w-full h-full object-cover">
+                        <a href="https://youtu.be/cvjfoRxQlRY" target="_blank" rel="noopener"
+                            class="absolute inset-0 flex items-center justify-center opacity-0 bg-black bg-opacity-50 group-hover:opacity-100 transition duration-300 rounded-lg">
+                            <i class="fas fa-play-circle text-white text-4xl"></i>
+                            <span class="text-white text-lg ml-2">Video 6</span>
+                        </a>
+                    </div>
+                    <div class="photo-item relative group">
+                        <img src="./Nqobile Sibiya - Computer Information Science Student_files/maxresdefault(5).jpg"
+                            alt="Video 7" class="rounded-lg shadow-lg w-full h-full object-cover">
+                        <a href="https://youtu.be/P7vY7QRaFTg" target="_blank" rel="noopener"
+                            class="absolute inset-0 flex items-center justify-center opacity-0 bg-black bg-opacity-50 group-hover:opacity-100 transition duration-300 rounded-lg">
+                            <i class="fas fa-play-circle text-white text-4xl"></i>
+                            <span class="text-white text-lg ml-2">Video 7</span>
+                        </a>
+                    </div>
+                    <div class="photo-item relative group">
+                        <img src="./Nqobile Sibiya - Computer Information Science Student_files/maxresdefault(6).jpg"
+                            alt="Video 8" class="rounded-lg shadow-lg w-full h-full object-cover">
+                        <a href="https://youtu.be/FyGzSRJ4-HY" target="_blank" rel="noopener"
+                            class="absolute inset-0 flex items-center justify-center opacity-0 bg-black bg-opacity-50 group-hover:opacity-100 transition duration-300 rounded-lg">
+                            <i class="fas fa-play-circle text-white text-4xl"></i>
+                            <span class="text-white text-lg ml-2">Video 8</span>
+                        </a>
+                    </div>
+                    <div class="photo-item relative group">
+                        <img src="./Nqobile Sibiya - Computer Information Science Student_files/maxresdefault(7).jpg"
+                            alt="Video 9" class="rounded-lg shadow-lg w-full h-full object-cover">
+                        <a href="https://youtu.be/_Z3ELCvuO94" target="_blank" rel="noopener"
+                            class="absolute inset-0 flex items-center justify-center opacity-0 bg-black bg-opacity-50 group-hover:opacity-100 transition duration-300 rounded-lg">
+                            <i class="fas fa-play-circle text-white text-4xl"></i>
+                            <span class="text-white text-lg ml-2">Video 9</span>
+                        </a>
+                    </div>
+                    <div class="photo-item relative group">
+                        <img src="./Nqobile Sibiya - Computer Information Science Student_files/maxresdefault(8).jpg"
+                            alt="Video 10" class="rounded-lg shadow-lg w-full h-full object-cover">
+                        <a href="https://youtu.be/FvPhwE9DI3c" target="_blank" rel="noopener"
+                            class="absolute inset-0 flex items-center justify-center opacity-0 bg-black bg-opacity-50 group-hover:opacity-100 transition duration-300 rounded-lg">
+                            <i class="fas fa-play-circle text-white text-4xl"></i>
+                            <span class="text-white text-lg ml-2">Video 10</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script>
+            const videoData = [
+                { id: "qlKQAB2iiqQ", title: "Video 1" },
+                { id: "e0ePOGZzB3Y", title: "Video 2" },
+                { id: "ssj81DV0_uM", title: "Video 3" },
+                { id: "eu_Z9ffnEDE", title: "Video 4" },
+                { id: "cvjfoRxQlRY", title: "Video 6" },
+                { id: "P7vY7QRaFTg", title: "Video 7" },
+                { id: "FyGzSRJ4-HY", title: "Video 8" },
+                { id: "_Z3ELCvuO94", title: "Video 9" },
+                { id: "FvPhwE9DI3c", title: "Video 10" }
+            ];
+
+            const photoGrid = document.querySelector('.photo-grid');
+            videoData.forEach(video => {
+                const item = document.createElement('div');
+                item.classList.add('photo-item', 'relative', 'group');
+                item.innerHTML = `
+                    <img src="https://img.youtube.com/vi/${video.id}/maxresdefault.jpg" alt="${video.title}" class="rounded-lg shadow-lg w-full h-full object-cover">
+                    <a href="https://youtu.be/${video.id}" target="_blank" class="absolute inset-0 flex items-center justify-center opacity-0 bg-black bg-opacity-50 group-hover:opacity-100 transition duration-300 rounded-lg">
+                        <i class="fas fa-play-circle text-white text-4xl"></i>
+                        <span class="text-white text-lg ml-2">${video.title}</span>
+                    </a>
+                `;
+                photoGrid.appendChild(item);
+            });
+        </script>
+
+
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 bg-gray-100 relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-br from-blue-500 to-purple-400 opacity-20 animate-gradient">
+            </div>
+            <div class="container mx-auto px-4 relative z-10">
+                <div class="max-w-3xl mx-auto">
+                    <h2
+                        class="text-4xl md:text-5xl font-bold text-center mb-8 text-white drop-shadow-lg animate-bounce">
+                        Let's Connect!</h2>
+                    <p class="text-lg md:text-xl text-center text-white mb-12">I'm always excited to discuss new
+                        projects, opportunities, or just geek out about technology. Feel free to reach out!</p>
+                </div>
+                <div class="flex flex-col md:flex-row -mx-4 space-y-8 md:space-y-0">
+                    <div class="w-full md:w-1/2 px-4 animate__animated animate__fadeInLeft">
+                        <div
+                            class="bg-white rounded-lg shadow-lg p-8 text-center transform transition-transform hover:scale-105">
+                            <div class="flex flex-col items-center">
+                                <i class="fas fa-envelope fa-3x mb-4 text-blue-500"></i>
+                                <h4 class="text-xl font-bold mb-2">Email</h4>
+                                <a href="mailto:Jhk3119@gmail.com" class="hover:text-blue-700">Jhk3119@gmail.com</a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full md:w-1/2 px-4 animate__animated animate__fadeInRight">
+                        <div
+                            class="bg-white rounded-lg shadow-lg p-8 text-center transform transition-transform hover:scale-105">
+                            <div class="flex flex-col items-center">
+                                <i class="fas fa-map-marker-alt fa-3x mb-4 text-blue-500"></i>
+                                <h4 class="text-xl font-bold mb-2">Location</h4>
+                                <p>Johannesburg, Gauteng</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="w-full px-4 mt-8 md:mt-0 animate__animated animate__fadeInUp">
+                        <div
+                            class="bg-white rounded-lg shadow-lg p-8 text-center transform transition-transform hover:scale-105">
+                            <div class="flex flex-col items-center">
+                                <i class="fab fa-linkedin fa-3x mb-4 text-blue-500"></i>
+                                <h4 class="text-xl font-bold mb-2">LinkedIn</h4>
+                                <a href="https://www.linkedin.com/in/nqobile-sibiya-530657218/" target="_blank"
+                                    rel="noopener" class="hover:text-blue-700">Visit My Profile</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <style>
+            /* ... (Your existing styles) ... */
+
+            /* ... (Your existing styles) ... */
+
+            #contact {
+                background-color: #5bbaf9;
+                /* ... other section styles ... */
+            }
+
+            #contact .animate-gradient {
+                background: linear-gradient(45deg, #44b2de, #77B5FE);
+                background-size: 400% 400%;
+                animation: gradientAnimation 15s ease infinite;
+            }
+
+            @keyframes gradientAnimation {
+                /* ... (Animation keyframes remain the same) ... */
+            }
+
+            #contact h2 {
+                color: #007bff;
+                /* ... other heading styles ... */
+            }
+
+            #contact .bg-white {
+                background-color: #007bff;
+            }
+
+            #contact .text-blue-500 {
+                color: #0c4a6e;
+            }
+        </style>
+
+
+    </main><veepn-guard-alert><template shadowrootmode="open">
+            <style>
+                html {
+                    box-sizing: border-box;
+                    text-size-adjust: 100%;
+                    word-break: normal;
+                    -moz-tab-size: 4;
+                    tab-size: 4
+                }
+
+                *,
+                :before,
+                :after {
+                    background-repeat: no-repeat;
+                    box-sizing: border-box
+                }
+
+                :before,
+                :after {
+                    text-decoration: inherit;
+                    vertical-align: inherit
+                }
+
+                * {
+                    padding: 0;
+                    margin: 0
+                }
+
+                hr {
+                    overflow: visible;
+                    height: 0;
+                    color: inherit;
+                    border: 0;
+                    border-top: 1px solid
+                }
+
+                details,
+                main {
+                    display: block
+                }
+
+                summary {
+                    display: list-item
+                }
+
+                small {
+                    font-size: 80%
+                }
+
+                [hidden] {
+                    display: none
+                }
+
+                abbr[title] {
+                    border-bottom: none;
+                    text-decoration: underline;
+                    text-decoration: underline dotted
+                }
+
+                a {
+                    background-color: transparent
+                }
+
+                a:active,
+                a:hover {
+                    outline-width: 0
+                }
+
+                code,
+                kbd,
+                pre,
+                samp {
+                    font-family: monospace
+                }
+
+                pre {
+                    font-size: 1em
+                }
+
+                b,
+                strong {
+                    font-weight: bolder
+                }
+
+                sub,
+                sup {
+                    font-size: 75%;
+                    line-height: 0;
+                    position: relative;
+                    vertical-align: baseline
+                }
+
+                sub {
+                    bottom: -.25em
+                }
+
+                sup {
+                    top: -.5em
+                }
+
+                table {
+                    border-color: inherit;
+                    text-indent: 0
+                }
+
+                iframe {
+                    border-style: none
+                }
+
+                input {
+                    border-radius: 0
+                }
+
+                [type=number]::-webkit-inner-spin-button,
+                [type=number]::-webkit-outer-spin-button {
+                    height: auto
+                }
+
+                [type=search] {
+                    -webkit-appearance: textfield;
+                    -moz-appearance: textfield;
+                    appearance: textfield;
+                    outline-offset: -2px
+                }
+
+                [type=search]::-webkit-search-decoration {
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none
+                }
+
+                textarea {
+                    overflow: auto;
+                    resize: vertical
+                }
+
+                button,
+                input,
+                optgroup,
+                select,
+                textarea {
+                    font: inherit;
+                    color: inherit
+                }
+
+                optgroup {
+                    font-weight: 700
+                }
+
+                button {
+                    overflow: visible
+                }
+
+                button,
+                select {
+                    text-transform: none
+                }
+
+                button,
+                [type=button],
+                [type=reset],
+                [type=submit],
+                [role=button] {
+                    cursor: pointer
+                }
+
+                button::-moz-focus-inner,
+                [type=button]::-moz-focus-inner,
+                [type=reset]::-moz-focus-inner,
+                [type=submit]::-moz-focus-inner {
+                    border-style: none;
+                    padding: 0
+                }
+
+                button,
+                html [type=button],
+                [type=reset],
+                [type=submit] {
+                    -webkit-appearance: button;
+                    -moz-appearance: button;
+                    appearance: button
+                }
+
+                button,
+                input,
+                select,
+                textarea {
+                    background-color: transparent;
+                    border-style: none
+                }
+
+                button:-moz-focusring,
+                [type=button]::-moz-focus-inner,
+                [type=reset]::-moz-focus-inner,
+                [type=submit]::-moz-focus-inner {
+                    outline: 1px dotted ButtonText
+                }
+
+                select {
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none
+                }
+
+                a:focus,
+                button:focus,
+                input:focus,
+                select:focus,
+                textarea:focus {
+                    outline-width: 0
+                }
+
+                select::-ms-expand {
+                    display: none
+                }
+
+                select::-ms-value {
+                    color: currentcolor
+                }
+
+                legend {
+                    border: 0;
+                    color: inherit;
+                    display: table;
+                    white-space: normal;
+                    max-width: 100%
+                }
+
+                ::-webkit-file-upload-button {
+                    -webkit-appearance: button;
+                    -moz-appearance: button;
+                    appearance: button;
+                    color: inherit;
+                    font: inherit
+                }
+
+                [disabled] {
+                    cursor: default
+                }
+
+                img {
+                    border-style: none
+                }
+
+                progress {
+                    vertical-align: baseline
+                }
+
+                [aria-busy=true] {
+                    cursor: progress
+                }
+
+                [aria-controls] {
+                    cursor: pointer
+                }
+
+                [aria-disabled=true] {
+                    cursor: default
+                }
+
+                ul,
+                ol {
+                    list-style-type: none
+                }
+
+                figure {
+                    margin: 0
+                }
+
+                .guard-popup {
+                    font-family: FigtreeVF, sans-serif;
+                    position: fixed;
+                    z-index: 2147483638;
+                    top: 8px;
+                    left: 24px;
+                    overflow: visible;
+                    color: #222e3a;
+                    background-color: #fff;
+                    max-width: 416px;
+                    width: calc(100% - 48px);
+                    border-radius: 16px;
+                    box-shadow: 0 4px 20px #00000040;
+                    padding: 24px
+                }
+
+                .guard-popup__header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    column-gap: 16px;
+                    margin-bottom: 24px
+                }
+
+                .guard-popup__close {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 24px;
+                    height: 24px;
+                    opacity: .7
+                }
+
+                .guard-popup__img {
+                    line-height: 0;
+                    margin-bottom: 24px
+                }
+
+                .guard-popup__img img {
+                    width: 100%;
+                    aspect-ratio: 368/142;
+                    object-fit: cover;
+                    border-radius: 12px;
+                    overflow: hidden
+                }
+
+                .guard-popup__title {
+                    font-size: 24px;
+                    line-height: 32px;
+                    margin-bottom: 8px
+                }
+
+                .guard-popup__description {
+                    font-size: 20px;
+                    line-height: 28px;
+                    font-weight: 500;
+                    color: #4a5764;
+                    margin-bottom: 28px
+                }
+
+                .guard-popup__actions {
+                    display: flex;
+                    justify-content: flex-end;
+                    column-gap: 16px
+                }
+
+                .guard-popup__btn {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    padding: 8px 16px;
+                    border-radius: 5px;
+                    font-size: 16px;
+                    line-height: 24px;
+                    font-weight: 700;
+                    cursor: pointer;
+                    color: #fff;
+                    background: linear-gradient(180deg, #5695fd, #1554ff)
+                }
+            </style>
+        </template>
+        <style>
+            @font-face {
+                font-family: FigtreeVF;
+                src: url(chrome-extension://majdfhpaihoncoakbjgbdhglocklcgno/fonts/FigtreeVF.woff2) format("woff2 supports variations"), url(chrome-extension://majdfhpaihoncoakbjgbdhglocklcgno/fonts/FigtreeVF.woff2) format("woff2-variations");
+                font-weight: 100 1000;
+                font-display: swap
+            }
+        </style>
+    </veepn-guard-alert><veepn-lock-screen><template shadowrootmode="open">
+            <style>
+                html {
+                    box-sizing: border-box;
+                    text-size-adjust: 100%;
+                    word-break: normal;
+                    -moz-tab-size: 4;
+                    tab-size: 4
+                }
+
+                *,
+                :before,
+                :after {
+                    background-repeat: no-repeat;
+                    box-sizing: border-box
+                }
+
+                :before,
+                :after {
+                    text-decoration: inherit;
+                    vertical-align: inherit
+                }
+
+                * {
+                    padding: 0;
+                    margin: 0
+                }
+
+                hr {
+                    overflow: visible;
+                    height: 0;
+                    color: inherit;
+                    border: 0;
+                    border-top: 1px solid
+                }
+
+                details,
+                main {
+                    display: block
+                }
+
+                summary {
+                    display: list-item
+                }
+
+                small {
+                    font-size: 80%
+                }
+
+                [hidden] {
+                    display: none !important
+                }
+
+                abbr[title] {
+                    border-bottom: none;
+                    text-decoration: underline;
+                    text-decoration: underline dotted
+                }
+
+                a {
+                    background-color: transparent
+                }
+
+                a:active,
+                a:hover {
+                    outline-width: 0
+                }
+
+                code,
+                kbd,
+                pre,
+                samp {
+                    font-family: monospace
+                }
+
+                pre {
+                    font-size: 1em
+                }
+
+                b,
+                strong {
+                    font-weight: bolder
+                }
+
+                sub,
+                sup {
+                    font-size: 75%;
+                    line-height: 0;
+                    position: relative;
+                    vertical-align: baseline
+                }
+
+                sub {
+                    bottom: -.25em
+                }
+
+                sup {
+                    top: -.5em
+                }
+
+                table {
+                    border-color: inherit;
+                    text-indent: 0
+                }
+
+                iframe {
+                    border-style: none
+                }
+
+                input {
+                    border-radius: 0
+                }
+
+                [type=number]::-webkit-inner-spin-button,
+                [type=number]::-webkit-outer-spin-button {
+                    height: auto
+                }
+
+                [type=search] {
+                    -webkit-appearance: textfield;
+                    -moz-appearance: textfield;
+                    appearance: textfield;
+                    outline-offset: -2px
+                }
+
+                [type=search]::-webkit-search-decoration {
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none
+                }
+
+                textarea {
+                    overflow: auto;
+                    resize: vertical
+                }
+
+                button,
+                input,
+                optgroup,
+                select,
+                textarea {
+                    font: inherit;
+                    color: inherit
+                }
+
+                optgroup {
+                    font-weight: 700
+                }
+
+                button {
+                    overflow: visible
+                }
+
+                button,
+                select {
+                    text-transform: none
+                }
+
+                button,
+                [type=button],
+                [type=reset],
+                [type=submit],
+                [role=button] {
+                    cursor: pointer
+                }
+
+                button::-moz-focus-inner,
+                [type=button]::-moz-focus-inner,
+                [type=reset]::-moz-focus-inner,
+                [type=submit]::-moz-focus-inner {
+                    border-style: none;
+                    padding: 0
+                }
+
+                button,
+                html [type=button],
+                [type=reset],
+                [type=submit] {
+                    -webkit-appearance: button;
+                    -moz-appearance: button;
+                    appearance: button
+                }
+
+                button,
+                input,
+                select,
+                textarea {
+                    background-color: transparent;
+                    border-style: none
+                }
+
+                button:-moz-focusring,
+                [type=button]::-moz-focus-inner,
+                [type=reset]::-moz-focus-inner,
+                [type=submit]::-moz-focus-inner {
+                    outline: 1px dotted ButtonText
+                }
+
+                select {
+                    -webkit-appearance: none;
+                    -moz-appearance: none;
+                    appearance: none
+                }
+
+                a:focus,
+                button:focus,
+                input:focus,
+                select:focus,
+                textarea:focus {
+                    outline-width: 0
+                }
+
+                select::-ms-expand {
+                    display: none
+                }
+
+                select::-ms-value {
+                    color: currentcolor
+                }
+
+                legend {
+                    border: 0;
+                    color: inherit;
+                    display: table;
+                    white-space: normal;
+                    max-width: 100%
+                }
+
+                ::-webkit-file-upload-button {
+                    -webkit-appearance: button;
+                    -moz-appearance: button;
+                    appearance: button;
+                    color: inherit;
+                    font: inherit
+                }
+
+                [disabled] {
+                    cursor: default
+                }
+
+                img {
+                    border-style: none
+                }
+
+                progress {
+                    vertical-align: baseline
+                }
+
+                [aria-busy=true] {
+                    cursor: progress
+                }
+
+                [aria-controls] {
+                    cursor: pointer
+                }
+
+                [aria-disabled=true] {
+                    cursor: default
+                }
+
+                ul,
+                ol {
+                    list-style-type: none
+                }
+
+                figure {
+                    margin: 0
+                }
+
+                .lock-screen {
+                    font-family: FigtreeVF, sans-serif;
+                    letter-spacing: normal;
+                    position: fixed;
+                    z-index: 2147483638;
+                    top: 0;
+                    right: 0;
+                    bottom: 0;
+                    left: 0;
+                    padding: 32px 40px;
+                    color: #222e3a;
+                    background-color: #fdfdfd;
+                    display: flex;
+                    flex-direction: column;
+                    row-gap: 12px;
+                    overflow: auto;
+                    background-image: radial-gradient(circle at 0% 0%, #e6fffdcc, #e6fffd00 50%), radial-gradient(circle at 100% 0%, #ebfffecc, #ebfffe00 50%), radial-gradient(circle at 100% 100%, #f0f5ffcc, #f0f5ff00 50%), radial-gradient(circle at 0% 100%, #f2f2ffcc, #f2f2ff00 50%), radial-gradient(circle at 50% 50%, #fff, #fffc, #f5f5ff66, #f0f0ff33, #f0f0ff00), linear-gradient(to bottom right, #e6fffd, #f2f2ff);
+                    background-size: 100% 100%;
+                    background-repeat: no-repeat
+                }
+
+                .lock-screen__header {
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between
+                }
+
+                .lock-screen__logo {
+                    display: inline-flex;
+                    align-items: center;
+                    column-gap: 12px;
+                    font-size: 18px;
+                    font-weight: 600
+                }
+
+                .lock-screen__close {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 40px;
+                    height: 40px;
+                    border-radius: 50%;
+                    background-color: #222e3a1a
+                }
+
+                .lock-screen__main {
+                    flex-grow: 1;
+                    align-content: center
+                }
+
+                .lock-screen__container {
+                    max-width: 1120px;
+                    margin-inline: auto;
+                    display: flex;
+                    align-items: center;
+                    gap: 24px
+                }
+
+                @media (width < 972px) {
+                    .lock-screen__container {
+                        flex-direction: column
+                    }
+                }
+
+                .lock-screen__timer {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 100%
+                }
+
+                .lock-screen__content {
+                    width: 100%
+                }
+
+                .lock-screen__title {
+                    font-size: 48px;
+                    font-weight: 700;
+                    line-height: 56px;
+                    margin-bottom: 16px
+                }
+
+                .lock-screen__description {
+                    font-size: 18px;
+                    line-height: 32px;
+                    margin-bottom: 24px
+                }
+
+                .lock-screen__actions {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+                    gap: 16px
+                }
+
+                .lock-screen__action {
+                    height: 48px;
+                    border-radius: 12px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    font-size: 16px;
+                    font-weight: 700;
+                    text-align: center;
+                    padding: 8px 24px
+                }
+
+                .upgrade-btn {
+                    color: #fff;
+                    background: linear-gradient(180deg, #20df9e, #13cf8f)
+                }
+
+                .skip-btn {
+                    color: #3066ff;
+                    border-width: 1px;
+                    border-style: solid;
+                    border-color: #3066ff;
+                    position: relative
+                }
+
+                .skip-btn__tooltip {
+                    font-size: 14px;
+                    line-height: 24px;
+                    font-weight: 400;
+                    position: absolute;
+                    z-index: 1;
+                    left: 50%;
+                    top: calc(100% + 18px);
+                    padding: 8px 12px;
+                    color: #fff;
+                    border: 1px solid #4a5764;
+                    background-color: #222e3a;
+                    border-radius: 8px;
+                    width: max-content;
+                    pointer-events: none;
+                    animation: slide-in .6s ease-in-out forwards
+                }
+
+                @keyframes slide-in {
+                    0% {
+                        opacity: 0;
+                        transform: translate(-50%, -100%)
+                    }
+
+                    to {
+                        opacity: 1;
+                        transform: translate(-50%)
+                    }
+                }
+
+                .skip-btn__tooltip:after {
+                    content: "";
+                    display: block;
+                    position: absolute;
+                    z-index: 1;
+                    top: -8px;
+                    left: 50%;
+                    width: 0;
+                    height: 0;
+                    border-style: solid;
+                    border-width: 0 8px 8px;
+                    border-color: transparent transparent #222e3a;
+                    transform: translate(-6px)
+                }
+
+                .skip-btn__icon {
+                    display: none
+                }
+
+                .skip-btn:disabled {
+                    cursor: not-allowed
+                }
+
+                .skip-btn:disabled .skip-btn__tooltip,
+                .skip-btn:disabled .skip-btn__text {
+                    display: none
+                }
+
+                .skip-btn:disabled .skip-btn__icon {
+                    display: initial;
+                    animation: tick-tock .8s steps(8, end) infinite
+                }
+
+                @keyframes tick-tock {
+                    to {
+                        transform: rotate(360deg)
+                    }
+                }
+
+                .timer {
+                    position: relative;
+                    max-width: 422px;
+                    width: 100%;
+                    aspect-ratio: 1/1;
+                    border-radius: 50%;
+                    background-color: #fff;
+                    box-shadow: 0 0 40px #2b374114;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    pointer-events: none;
+                    -webkit-user-select: none;
+                    user-select: none
+                }
+
+                .timer__circle-backward {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%);
+                    z-index: 0;
+                    max-width: 100%;
+                    height: auto;
+                    opacity: .4
+                }
+
+                .timer__circle-forward {
+                    position: absolute;
+                    top: 50%;
+                    left: 50%;
+                    transform: translate(-50%, -50%) rotate(45deg);
+                    z-index: 1;
+                    max-width: 100%;
+                    height: auto;
+                    animation: sector 5s linear forwards
+                }
+
+                .timer__fire-icon {
+                    position: absolute;
+                    top: 22%;
+                    left: 50%;
+                    transform: translate(-50%);
+                    z-index: 2
+                }
+
+                .timer__text {
+                    font-size: clamp(18px, 10vw, 88px);
+                    letter-spacing: -1px;
+                    text-align: center;
+                    font-variant-numeric: tabular-nums;
+                    position: relative;
+                    z-index: 3
+                }
+
+                .timer--finished .timer__text {
+                    color: #98a0a9
+                }
+
+                .timer--finished .timer__circle-forward {
+                    display: none
+                }
+
+                @keyframes sector {
+                    0% {
+                        clip-path: polygon(50% 50%, 0% 2%, 100% 0%, 100% 100%, 0% 100%, 0% 2%)
+                    }
+
+                    25% {
+                        clip-path: polygon(50% 50%, 0% 2%, 100% 0%, 100% 100%, 0% 100%, 0% 100%)
+                    }
+
+                    25.000001% {
+                        clip-path: polygon(50% 50%, 0% 2%, 100% 0%, 100% 100%, 0% 100%)
+                    }
+
+                    50% {
+                        clip-path: polygon(50% 50%, 0% 2%, 100% 0%, 100% 100%, 100% 100%)
+                    }
+
+                    50.000001% {
+                        clip-path: polygon(50% 50%, 0% 2%, 100% 0%, 100% 100%)
+                    }
+
+                    75% {
+                        clip-path: polygon(50% 50%, 0% 2%, 100% 0%, 100% 0%)
+                    }
+
+                    75.000001% {
+                        clip-path: polygon(50% 50%, 0% 2%, 100% 0%)
+                    }
+
+                    to {
+                        clip-path: polygon(50% 50%, 0% 2%, 0% 0%)
+                    }
+                }
+
+                @media (prefers-color-scheme: dark) {
+                    .lock-screen {
+                        color: #fff;
+                        background-image: radial-gradient(circle at 0% 0%, #2f4f4fcc, #2f4f4f00 50%), radial-gradient(circle at 100% 0%, #193042cc, #19304200 50%), radial-gradient(circle at 100% 100%, #1c3041cc, #1c304100 50%), radial-gradient(circle at 0% 100%, #1b263bcc, #1b263b00 50%), radial-gradient(circle at 50% 50%, #141e28, #141e28cc, #1b263b66, #1c304133, #1c304100), linear-gradient(to bottom right, #2f4f4f, #1b263b)
+                    }
+
+                    .lock-screen__close {
+                        background-color: #ffffff1a
+                    }
+
+                    .skip-btn {
+                        color: #fff;
+                        border-color: #fff
+                    }
+
+                    .skip-btn__tooltip {
+                        color: #222e3a;
+                        border: 1px solid #f5f6f7;
+                        background-color: #fff
+                    }
+
+                    .skip-btn__tooltip:after {
+                        border-color: transparent transparent #fff
+                    }
+
+                    .timer {
+                        background-color: #191b25
+                    }
+
+                    .timer__circle-backward {
+                        opacity: 1
+                    }
+
+                    .timer--finished .timer__text {
+                        color: #5c6977
+                    }
+                }
+            </style>
+        </template>
+        <style>
+            @font-face {
+                font-family: FigtreeVF;
+                src: url(chrome-extension://majdfhpaihoncoakbjgbdhglocklcgno/fonts/FigtreeVF.woff2) format("woff2 supports variations"), url(chrome-extension://majdfhpaihoncoakbjgbdhglocklcgno/fonts/FigtreeVF.woff2) format("woff2-variations");
+                font-weight: 100 1000;
+                font-display: swap
+            }
+        </style>
+    </veepn-lock-screen><iframe id="nr-ext-rsicon"
+        style="position: absolute; display: none; width: 50px; height: 50px; z-index: 2147483647; border-style: none; background: transparent;"
+        src="./Nqobile Sibiya - Computer Information Science Student_files/saved_resource.html"></iframe>
+</body>
+
+</html>
